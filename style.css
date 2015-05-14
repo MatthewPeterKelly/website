@@ -1,5 +1,7 @@
 body {
     background-color: #ffffff;
+    width: 800px;
+	margin: 0 auto;
 }
 a {
     color: #2114D4;
@@ -13,25 +15,26 @@ a:visited {
 a:visited:hover {
     color: #6A4771;
 }
+
 #abstract p {
     max-width: 28em;
     margin: 0 auto;
     text-align: left;
 }
-#header {
+.header {
     text-align: center;
     color: #000000;
 }
-#header ul {
+.header ul {
     text-align: center;
     padding: 0;
     list-style-type: none;
 }
-#header ul li {
+.header ul li {
     display: inline;
     margin: 0.2em;
 }
-#header ul li a {
+.header ul li a {
     text-decoration: none;
     padding: .2em 0.8em;
     color: #B5B4DC;
@@ -40,7 +43,7 @@ a:visited:hover {
     font-weight: bold;
     font-size: 1.2em;
 }
-#header ul li a:hover {
+.header ul li a:hover {
     color: #2114D4;
     background-color: #B5B4DC;
     text-decoration: underline;
@@ -87,6 +90,11 @@ a:visited:hover {
 iframe {
     margin: 0 auto;
     display:block;
+}
+
+.imageLink {
+	height: 24px;
+	margin: 5px;
 }
 
 section {
