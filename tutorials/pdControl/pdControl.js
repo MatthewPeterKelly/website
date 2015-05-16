@@ -259,11 +259,11 @@ var stepResponse = {
 
 		xScale: d3.scale.linear()
 		.domain([0, 4.0])
-		.range([40, 760]),
+		.range([350, 800]),
 
 		yScale: d3.scale.linear()
 		.domain([-1.0, 1.0])
-		.range([390, 30]),
+		.range([140, 10]),
 
 		myDataCurve: function(t) {
 
@@ -309,7 +309,7 @@ var stepResponse = {
 			this.wn = sliderFreq.getFreq();
 			this.xi = sliderDamp.getDamp();
 			this.buildData();
-			d3.select("#stepResponse").select(".curve")
+			d3.select("#panelTwo").select(".curve")
 			.attr("d", smoothCurve(this.data));
 		}
 }
@@ -323,24 +323,8 @@ var smoothCurve = d3.svg.line()
 })
 .interpolate("monotone");
 
-//Axis for step response
-var xAxis = d3.svg.axis()
-.scale(stepResponse.xScale);
-var yAxis = d3.svg.axis()
-.scale(stepResponse.yScale)
-.orient("left");
-
-d3.select("#stepResponse").append("g")
-.attr("class", "axis")
-.attr("transform", "translate(40,0)")
-.call(yAxis);
-d3.select("#stepResponse").append("g")
-.attr("class", "axis")
-.attr("transform", "translate(0,210)")
-.call(xAxis);
-
 //Initialize the step response curve
-d3.select("#stepResponse").append("path")
+d3.select("#panelTwo").append("path")
 .attr("class", "curve");
 
 stepResponse.buildData();

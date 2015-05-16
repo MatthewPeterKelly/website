@@ -22,12 +22,13 @@ p {
 }
 
 svg {
-    background-color: #eee;
+    background-color: #ddd;
     box-shadow: 0 1px 4px -2px;
     cursor: crosshair;
     margin-left: auto;
     margin-right: auto;
     display: block;
+    border: 2;
 }
 
 #chaser {
