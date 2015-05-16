@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+<title>Quadrature</title>
+<link rel="stylesheet" type="text/css" href="../style.css" />
+<script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
+<script src="quadrature.js"></script>
+</head>
+
+<body>
+
+	<h1>Numerical Integration Methods:</h1>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1 style="color: #cc1155;">Under Construction! More coming soon.</h1>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<h1>Rectangle-rule:</h1>
+	<script>
+		var svg1 = d3.select("body").append("svg").attr("width",
+				width + margin.left + margin.right).attr("height",
+				height + margin.top + margin.bottom).append("g").attr(
+				"transform",
+				"translate(" + margin.left + "," + margin.top + ")");
+
+		svg1.append("g").attr("class", "x axis").attr("transform",
+				"translate(0," + height + ")").call(xAxis);
+
+		svg1.append("g").attr("class", "y axis").call(yAxis);
+
+		// Plot the obvious red curve
+		svg1.append("path").attr("d", lineSmooth(buildData(100))).attr(
+				"stroke", "red").attr("stroke-width", 4).attr("fill", "none");
+
+		// Plot the staircase curve:
+		quadData = buildDataStair(25);
+		svg1.append("path").attr("d", lineLeftHold(quadData)).attr("stroke",
+				"blue").attr("stroke-width", 4).attr("fill", "none");
+		svg1.append("path").attr("d", lineLeftHold(quadData)).attr("fill",
+				"blue").attr("opacity", 0.25);
+	</script>
+</body>

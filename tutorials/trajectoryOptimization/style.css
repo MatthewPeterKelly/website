@@ -1,0 +1,32 @@
+html,
+body {
+    color: #23241f;
+    /* dark grey */
+    
+    background: #f8f8f2;
+    /* off-white */
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 0px;
+}
+
+.figure {
+    text-align: left;
+    margin-right: auto;
+    margin-left: auto;
+    width: 800px;
+}
+
+.summary {
+    text-align: left;
+    margin-right: auto;
+    margin-left: auto;
+    width: 800px;
+}

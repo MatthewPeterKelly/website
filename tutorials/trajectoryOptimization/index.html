@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<title>Cannon Example</title>
+</head>
+
+<body>
+	<h1>Trajectory Optimization</h1>
+	<div class="summary">This page uses the simple example of aiming
+		a cannon to illustrate the difference between a few common methods for
+		solving a trajectory optimization problem: Single Shooting, Multiple
+		Shooting, and Collocation.</div>
+	<br>
+	<div class="summary">
+		All of the following examples have been implemented in Matlab, and are
+		available on <a
+			href="https://github.com/MatthewPeterKelly/dscTutorials/tree/master/TrajectoryOptimization/Example_1_Cannon">GitHub</a>.
+		I wrote a report on <a
+			href="../../research/MattKelly__Transcription_Methods_for_Trajectory_Optimization.pdf">Transcription
+			Methods for Trajectory Optimization</a> a while back, which describes
+		some the these techniques in more detail. An <a
+			href="https://github.com/MatthewPeterKelly/dscTutorials/tree/master/Trajectory_Optimization_Hammer_Example">
+			old version </a> of the tutorial can also be found on GitHub.
+	</div>
+
+
+
+	<h2>Cannon Example - Problem Description</h2>
+	<div class="figure">
+		<img src="sectionBreakTilde.svg" />
+	</div>
+	<div class="summary">Suppose that you have a cannon, and you
+		would like to hit a known target. To make things interesting, let's
+		assume that there is air friction and that you would like to minimize
+		the amount of powder used for the shot.</div>
+	<br>
+	<div class="summary">This situation can be modeled as a
+		boundary-value-problem, since you know where the trajectory (path of
+		the cannon ball) should start and end. The goal is to find the
+		trajectory, including the initial velocity of the cannon ball. We will
+		assume that: (1) the cannon ball is a point mass, (2) air friction is
+		modeled using quadratic drag, and (3) amount of powder is proportional
+		to initial speed squared. Thus we can write equations:</div>
+	<br>
+	<div class="figure">
+		<img src="cannon.svg" />
+	</div>
+	<h2>Solution: Single Shooting</h2>
+	<div class="figure">
+		<img src="sectionBreakTilde.svg" />
+	</div>
+	<div class="summary">Single shooting works by approximating the
+		trajectory using a single simulation. In other words, fire the cannon,
+		check where the ball landed, adjust the initial speed, repeat. In math
+		terms, the error between the target and where the cannon ball landed
+		is called a defect. The optimization algorithm will try to find the
+		initial speed such that this defect driven to zero. It turns out that
+		single shooting is an effective method for simple problems (like this
+		one), but it will fail on problems that are more difficult.</div>
+	<br>
+	<div class="figure">
+		<img src="cannon_singleShooting.svg" />
+	</div>
+	<br>
+	<div class="figure">
+		<img src="cannon_singleShooting.gif" />
+	</div>
+	<h2>Solution: Multiple Shooting</h2>
+	<div class="figure">
+		<img src="sectionBreakTilde.svg" />
+	</div>
+	<div class="summary">Multiple shooting is very similar to single
+		shooting, but it turns out to be much more robust on difficult
+		problems. It works by breaking the original problem into many small
+		problems, and then solving them in parallel. At the end, each segment
+		is constrained to connect to the previous one.</div>
+	<br>
+	<div class="figure">
+		<img src="cannon_multipleShooting.svg" />
+	</div>
+	<br>
+	<div class="figure">
+		<img src="cannon_multipleShooting.gif" />
+	</div>
+	<h2>Solution: Direct Collocation</h2>
+	<div class="figure">
+		<img src="sectionBreakTilde.svg" />
+	</div>
+	<div class="summary">Direct collocation is a bit more difficult
+		to visualize, since there is no simulation step. Instead, the
+		trajectory is approximated using a piecewise polynomial. Physics are
+		satisfied by requiring that the dynamics (derivative of the state)
+		match the derivative of the polynomial at each collocation point - the
+		points that implicitly define the polynomial. In effect, shooting
+		methods satisfy dynamics using explicit integration, while collocation
+		methods use implicit integration.</div>
+	<br>
+	<div class="summary">
+		There are a wide variety of collocation schemes. Orthogonal
+		collocation schemes, developed for computing satellite trajectories,
+		use a small number of high-order polynomials. They are extremely
+		accurate for problems well behaved solutions. The other extreme is
+		direct collocation, which uses a large number of low-order polynomials
+		to represent the solution. It tends to be slightly less accurate, but
+		can be more robust. Some sophisticated methods (<a
+			href="http://www.gpops2.com/">GPOPS</a>) use an adaptive meshing
+		routine to iterative change the number of segments and order of the
+		polynomials.
+	</div>
+	<br>
+	<div class="figure">
+		<img src="cannon_directCollocation.svg" />
+	</div>
+	<br>
+	<div class="figure">
+		<img src="cannon_directCollocation.gif" />
+	</div>
+	<br>
+	<br>
+</body>
