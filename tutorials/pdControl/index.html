@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en">
 
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>PD-controllers</title>
     <link rel="stylesheet" type="text/css" href="../style.css" />
     <script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
@@ -14,14 +15,14 @@
     <p> A proportional-derivative (PD) controller can be used to make a simple system track some reference point. The suspension in a car is an analogue example: the spring and damper work together to hold the car at some desired height. The spring exerts a force <em>proportional</em> its deflection, while the damper opposes motion (the <em>derivative</em> of deflection). </p>
     <p> A PD controller uses the same principles to create a virtual spring and damper between the measured and reference positions of a system. Below is an example showing a simulated point-mass (blue dot) that is tracking a target (green circle). Try clicking or dragging to move the target around.</p>
     <div>
-        <svg id="panelOne" width="800" height="400">
+        <svg id="panelOne" style="width: 800px; height: 400px;">
             <circle id="chaser" class="circle" r="8" z-index="-1" />
             <circle id="target" class="handle" class="circle" r="14" />
         </svg>
     </div>
     <p>The response of a PD controller can be characterized by two numbers: the <em>damping ratio</em> and the <em>natural frequency</em>. If the damping ratio is less than one, then the system will gradually approach the target. If the damping ratio is greater than one, the system will shoot past the target before returning. The natural frequency describes how quickly the system approaches the target. Try adjusting these parameters below, and see how they affect the ability of the dot to track the circle above. </p>
     <div>
-        <svg id="panelTwo" width="800" height="70">
+        <svg id="panelTwo" style="width: 800px; height: 70px;">
             <line id="dampingRail" class="sliderRail" x1="150" x2="375" y1="25" y2="25" />
             <text x="0" y="25" fill="black" dominant-baseline="central" class="sliderLabel">Damping Ratio:</text>
             <circle id="damping" class="handle" class="circle" r="14" />
@@ -40,7 +41,7 @@
     <div> $$k_d = 2 \xi \omega_n$$ </div>
 -->
     <div>
-        <svg id="stepResponse" width="800" height="400">
+        <svg id="stepResponse" style="width: 800px; height: 400px;">
             <text x="40" y="10" fill="black" text-anchor="middle" class="axisLabel" dominant-baseline="central">position</text>
             <text x="400" y="240" fill="black" text-anchor="middle" class="axisLabel" dominant-baseline="central">time</text>
         </svg>

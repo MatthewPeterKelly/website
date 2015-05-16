@@ -2,7 +2,7 @@
 
 ## NOTES:
 - Much of this code is inspired by a tutorial on [Red Blob Games](http://www.redblobgames.com/articles/curved-paths/making-of.html) 
-- All javascript variables and functions are in namespace.js
+- Most of the JavaScript is in pdControl.js
 - index.html is the main page, mostly html, with a bit of javascript
 
 ## TODO:
