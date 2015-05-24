@@ -71,17 +71,17 @@ a:visited:hover {
     margin-left: 0;
     padding-left: 0;
 }
-#content #codeLink a {
+#content .codeLink a {
     font-size: 1.15em;
     font-weight: bold;
     text-decoration: none;
 }
-#content #codeLink a:visited {
+#content .codeLink a:visited {
     font-size: 1.15em;
     font-weight: bold;
     text-decoration: none;
 }
-#content #codeLink a:hover {
+#content .codeLink a:hover {
     font-size: 1.15em;
     font-weight: bold;
     text-decoration: underline;
