@@ -1,9 +1,15 @@
 //This page is for variable and function definitions
 
+/*
+Returns the input clipped my min and max values
+ */
+function bound(value, min, max) {
+	return Math.max(Math.min(value,max),min);
+}
 
 var panelPtMass = {
-		width: 800,
-		height: 400,
+		width: parseInt(document.getElementById("panelPtMass").style.width),
+		height: parseInt(document.getElementById("panelPtMass").style.height),
 		svg: d3.select("#panelPtMass"),
 //		init: function() {
 //		d3.select("#panelPtMass").append("circle")
@@ -28,22 +34,10 @@ var target = {
 			return this.y;
 		},
 		setX: function(x) {
-			if (x < 0) {
-				x = 0;
-			}
-			if (x > panelPtMass.width) {
-				x = panelPtMass.width;
-			}
-			this.x = x;
+			this.x = bound(x,0,panelPtMass.width);
 		},
 		setY: function(y) {
-			if (y < 0) {
-				y = 0;
-			}
-			if (y > panelPtMass.height) {
-				y = panelPtMass.height;
-			}
-			this.y = y;
+			this.y = bound(y,0,panelPtMass.height);
 		},
 		redraw: function() {
 			d3.select("#target")
