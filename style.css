@@ -63,7 +63,10 @@ a:visited:hover {
     font-size: 2em;
 }
 #content h2 {
-    font-size: 1.2em;
+    font-size: 1.4em;
+}
+#content h3 {
+    font-size: 1.0em;
 }
 #content ul li {
     list-style-type: none;
