@@ -130,9 +130,6 @@ var sliderDamp = {
 		d: 1,
 		dLow: 0.001,
 		dUpp: 2,
-		scale: d3.scale.linear()
-		.domain([160, 300])
-		.range([0, 2]),
 		getX: function() {
 			return this.x;
 		},
@@ -140,14 +137,10 @@ var sliderDamp = {
 			return this.d;
 		},
 		setX: function(x) {
-			if (x < this.xLow) {
-				x = this.xLow;
-			}
-			if (x > this.xUpp) {
-				x = this.xUpp;
-			}
-			this.x = x;
-			this.d = this.scale(x);
+			this.x = bound(x, this.xLow, this.xUpp);
+			this.d = d3.scale.linear()
+				.domain([this.xLow,this.xUpp])
+				.range([this.dLow,this.dUpp])(this.x);
 		},
 		redraw: function() {
 			d3.select("#damping")
@@ -174,14 +167,8 @@ var sliderFreq = {
 			return this.f;
 		},
 		setX: function(x) {
-			if (x < this.xLow) {
-				x = this.xLow;
-			}
-			if (x > this.xUpp) {
-				x = this.xUpp;
-			}
-			this.x = x;
-			var xScale = (x - this.xLow) / (this.xUpp - this.xLow);
+			this.x = bound(x, this.xLow, this.xUpp);
+			var xScale = (this.x - this.xLow) / (this.xUpp - this.xLow);
 			this.f = this.fLow * Math.pow(this.fUpp / this.fLow, xScale); // Log scale
 		},
 		redraw: function() {
