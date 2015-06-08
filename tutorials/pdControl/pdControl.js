@@ -149,7 +149,22 @@ var sliderDamp = {
 			d3.select("#dampingLabel")
 			.text(formatLabelString(this.d))
 			.attr("x", this.x);
+			this.updateUI();
 		},
+		updateUI: function() {
+			var dampingDisplay = document.getElementById("dampingLevelDescription");
+			if(!dampingDisplay) {
+				return;
+			}
+
+			if(this.d < .99){
+				dampingDisplay.innerHTML = document.getElementById("underDampedDescription").innerHTML;
+			} else if(this.d > 1.01) {
+				dampingDisplay.innerHTML = document.getElementById("overDampedDescription").innerHTML;
+			} else {
+				dampingDisplay.innerHTML = document.getElementById("criticallyDampedDescription").innerHTML;
+			}
+		}
 };
 
 var sliderFreq = {
