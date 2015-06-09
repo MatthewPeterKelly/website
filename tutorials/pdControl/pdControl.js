@@ -39,6 +39,10 @@ var target = {
 	setY: function(y) {
 		this.y = bound(y,0,panelPtMass.height);
 	},
+	setCoords: function(x, y) {
+		this.setX(x);
+		this.setY(y);
+	},
 	redraw: function() {
 		d3.select("#target")
 			.attr("cx", this.x)
@@ -128,7 +132,6 @@ var formatLabelString = d3.format(".2f");
 function Slider(domain, range, sliderName, circleName, labelName, initialValue) {
 	this.x = 0;
 	this.y = document.getElementById(sliderName).getAttribute("y2");
-	console.log(sliderName + ": " + this.y);
 	this.value = initialValue ? initialValue : 1;
 
 	this.xRange = domain;
@@ -190,15 +193,13 @@ var sliderFreq = new Slider([160, 300], [1, 5], "frequencyRail", "#frequencyCirc
 d3.select("#target").call(
 	d3.behavior.drag()
 		.on("drag", function() {
-			target.setX(d3.event.x);
-			target.setY(d3.event.y);
+			target.setCoords(d3.event.x, d3.event.y);
 			chaser.updateTarget();
 		}));
 
 d3.select("#panelPtMass").on("click", function() {
 	var clickPos = d3.mouse(this);
-	target.setX(clickPos[0]);
-	target.setY(clickPos[1]);
+	target.setCoords(clickPos[0], clickPos[1]);
 	target.redraw();
 })
 
