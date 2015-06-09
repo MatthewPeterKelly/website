@@ -104,8 +104,8 @@ var chaser = {
 		updateTarget: function() {
 			this.xTarget = target.getX();
 			this.yTarget = target.getY();
-			var wn = 2 * Math.PI * sliderFreq.getFreq();
-			var xi = sliderDamp.getDamp();
+			var wn = 2 * Math.PI * sliderFreq.getValue();
+			var xi = sliderDamp.getValue();
 			this.kp = wn * wn;
 			this.kd = 2 * wn * xi;
 		},
@@ -122,79 +122,70 @@ var chaser = {
 
 var formatLabelString = d3.format(".2f");
 
-var sliderDamp = {
-		y: 30,
-		x: 150,
-		xLow: 160,
-		xUpp: 300,
-		d: 1,
-		dLow: 0.001,
-		dUpp: 2,
-		getX: function() {
-			return this.x;
-		},
-		getDamp: function() {
-			return this.d;
-		},
-		setX: function(x) {
-			this.x = bound(x, this.xLow, this.xUpp);
-			this.d = d3.scale.linear()
-				.domain([this.xLow,this.xUpp])
-				.range([this.dLow,this.dUpp])(this.x);
-		},
-		redraw: function() {
-			d3.select("#damping")
+/*
+ Define a slider class
+ */
+function Slider(domain, range, sliderName, circleName, labelName, initialValue) {
+	this.x = 0;
+	this.y = document.getElementById(sliderName).getAttribute("y2");
+	console.log(sliderName + ": " + this.y);
+	this.value = initialValue ? initialValue : 1;
+
+	this.xRange = domain;
+	this.valueRange = range;
+
+	this.scaleXToValue = d3.scale.linear()
+		.domain(this.xRange)
+		.range(this.valueRange);
+	this.scaleValueToX = d3.scale.linear()
+		.domain(this.valueRange)
+		.range(this.xRange);
+
+
+	this.getValue = function() {return this.value};
+	this.setValue = function(value) {
+		this.setX(this.scaleValueToX(value));
+	}
+	this.setX = function(x) {
+		this.x = bound(x, this.xRange[0], this.xRange[1]);
+		this.value = this.scaleXToValue(this.x);
+	}
+	this.redraw = function() {
+		d3.select(circleName)
 			.attr("cx", this.x)
 			.attr("cy", this.y);
-			d3.select("#dampingLabel")
-			.text(formatLabelString(this.d))
+		d3.select(labelName)
+			.text(formatLabelString(this.value))
 			.attr("x", this.x);
-			this.updateUI();
-		},
-		updateUI: function() {
-			var dampingDisplay = document.getElementById("dampingLevelDescription");
-			if(!dampingDisplay) {
-				return;
-			}
+	}
 
-			if(this.d < .99){
-				dampingDisplay.innerHTML = document.getElementById("underDampedDescription").innerHTML;
-			} else if(this.d > 1.01) {
-				dampingDisplay.innerHTML = document.getElementById("overDampedDescription").innerHTML;
-			} else {
-				dampingDisplay.innerHTML = document.getElementById("criticallyDampedDescription").innerHTML;
-			}
-		}
-};
+	this.onRedraw = function() {}
 
-var sliderFreq = {
-		x: 550,
-		y: 100,
-		xLow: 160,
-		xUpp: 300,
-		f: 5,
-		fLow: 1,
-		fUpp: 5,
-		getX: function() {
-			return this.x;
-		},
-		getFreq: function() {
-			return this.f;
-		},
-		setX: function(x) {
-			this.x = bound(x, this.xLow, this.xUpp);
-			var xScale = (this.x - this.xLow) / (this.xUpp - this.xLow);
-			this.f = this.fLow * Math.pow(this.fUpp / this.fLow, xScale); // Log scale
-		},
-		redraw: function() {
-			d3.select("#frequency")
-			.attr("cx", this.x)
-			.attr("cy", this.y);
-			d3.select("#frequencyLabel")
-			.text(formatLabelString(this.f))
-			.attr("x", this.x);
-		},
-};
+	this.initialize = function() {
+		this.setValue(this.value);
+		var sliderReference = this;
+
+		d3.select(circleName).call(
+			d3.behavior.drag()
+				.on("drag", function() {
+					sliderReference.setX(d3.event.x);
+				}));
+
+		d3.select("#" + sliderName).on("click", function() {
+			var clickPos = d3.mouse(this);
+			sliderReference.setX(clickPos[0]);
+		})
+	}
+
+	this.initialize();
+}
+
+var sliderDamp = new Slider([160, 300], [.001, 2], "dampingRail", "#dampingCircle", "#dampingLabel");
+
+var sliderFreq = new Slider([160, 300], [1, 5], "frequencyRail", "#frequencyCircle", "#frequencyLabel", 3);
+//sliderFreq.scaleXToValue
+
+
 
 d3.select("#target").call(
 		d3.behavior.drag()
@@ -204,33 +195,11 @@ d3.select("#target").call(
 			chaser.updateTarget();
 		}));
 
-d3.select("#damping").call(
-		d3.behavior.drag()
-		.on("drag", function() {
-			sliderDamp.setX(d3.event.x);
-		}));
-
-d3.select("#frequency").call(
-		d3.behavior.drag()
-		.on("drag", function() {
-			sliderFreq.setX(d3.event.x);
-		}));
-
 d3.select("#panelPtMass").on("click", function() {
 	var clickPos = d3.mouse(this);
 	target.setX(clickPos[0]);
 	target.setY(clickPos[1]);
 	target.redraw();
-})
-
-d3.select("#dampingRail").on("click", function() {
-	var clickPos = d3.mouse(this);
-	sliderDamp.setX(clickPos[0]);
-})
-
-d3.select("#frequencyRail").on("click", function() {
-	var clickPos = d3.mouse(this);
-	sliderFreq.setX(clickPos[0]);
 })
 
 var lineSmooth = d3.svg.line()
@@ -302,8 +271,8 @@ var stepResponse = {
 		},
 
 		redraw: function() {
-			this.wn = sliderFreq.getFreq();
-			this.xi = sliderDamp.getDamp();
+			this.wn = sliderFreq.getValue();
+			this.xi = sliderDamp.getValue();
 			this.buildData();
 			d3.select("#panelTwo").select(".curve")
 			.attr("d", smoothCurve(this.data));
@@ -325,9 +294,6 @@ d3.select("#panelTwo").append("path")
 
 stepResponse.buildData();
 
-//Force consistent initialization:
-sliderDamp.setX(0.5 * (sliderDamp.xLow + sliderDamp.xUpp));
-sliderFreq.setX(sliderFreq.xLow + 0.3 * (sliderFreq.xUpp - sliderFreq.xLow));
 
 //ANIMATION LOOP:
 var tLast = 0,
