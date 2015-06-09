@@ -160,6 +160,7 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
 		d3.select(labelName)
 			.text(formatLabelString(this.value))
 			.attr("x", this.x);
+		this.onRedraw();
 	}
 
 	this.onRedraw = function() {}
@@ -184,6 +185,23 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
 }
 
 var sliderDamp = new Slider([160, 300], [.001, 2], "dampingRail", "#dampingCircle", "#dampingLabel");
+
+sliderDamp.onRedraw = function() {
+	var dampingDisplay = document.getElementById("dampingLevelDescription");
+	if(!dampingDisplay) {
+		return;
+	}
+
+	if(this.value < .99){
+		dampingDisplay.innerHTML = document.getElementById("underDampedDescription").innerHTML;
+	} else if(this.value > 1.01) {
+		dampingDisplay.innerHTML = document.getElementById("overDampedDescription").innerHTML;
+	} else {
+		dampingDisplay.innerHTML = document.getElementById("criticallyDampedDescription").innerHTML;
+	}
+
+}
+
 
 var sliderFreq = new Slider([160, 300], [1, 5], "frequencyRail", "#frequencyCircle", "#frequencyLabel", 3);
 //sliderFreq.scaleXToValue
