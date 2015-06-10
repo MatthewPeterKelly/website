@@ -48,7 +48,31 @@ var target = {
 			.attr("cx", this.x)
 			.attr("cy", this.y)
 	},
+	updateTarget: function() {
+		targetMotion(this);
+	},
+	motionType: "off",
+	motionTime: 0
 };
+
+function targetMotion(target) {
+	var w = panelPtMass.width;
+	var h = panelPtMass.height;
+	var coords;
+	switch(target.motionType){
+		case "off":
+			return;
+		case "sinusoid":
+			target.setCoords([w/2 + w/4*Math.sin(target.motionTime), h/2]);
+			break;
+		case "circle":
+			target.setCoords([w/2 + h/4*Math.sin(target.motionTime),
+			h/2 + h/4*Math.cos(target.motionTime)])
+			break;
+	};
+	target.motionTime = target.motionTime + .03;
+}
+
 
 var chaser = {
 	x: 400,
@@ -326,6 +350,7 @@ d3.timer(function(t) {
 		chaser.timeStep(dt / nSubStep);
 	}
 
+	target.updateTarget();
 	chaser.updateTarget();
 	chaser.redraw();
 	target.redraw();
@@ -333,3 +358,8 @@ d3.timer(function(t) {
 	sliderFreq.redraw();
 	stepResponse.redraw();
 });
+
+function updateTargetMotion(value) {
+	document.getElementById("motionDescription").innerHTML = "blap";
+	target.motionType = value;
+}

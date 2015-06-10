@@ -72,10 +72,16 @@
 </div>
 
 <div id="pdColumn3">
-    <input type="checkbox" name="Motion" value="Sinusoid">Sinusoidal Motion</input>
+    <input type="checkbox" name="MotionCheckbox" value="Sinusoid" onchange="onMotionSettingChange(this.checked)">Moving Target<br>
+    <div id="motionDiv" style="display:none;margin-left:30px;">
+        <input type="radio" name="MotionType" value="sinusoid" onchange="onMotionSettingSelected()">Sinusoid<br>
+        <input type="radio" name="MotionType" value="circle" onchange="onMotionSettingSelected()">Circle<br>
+    </div>
+    <h2 id="motionDescription">nothing</h2>
 </div>
 
 
 
 </body>
 <script src="pdControl.js"></script>
+<script src="advancedPdControl.js"></script>
