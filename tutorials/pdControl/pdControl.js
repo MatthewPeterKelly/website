@@ -39,16 +39,40 @@ var target = {
 	setY: function(y) {
 		this.y = bound(y,0,panelPtMass.height);
 	},
-	setCoords: function(x, y) {
-		this.setX(x);
-		this.setY(y);
+	setCoords: function(coords) {
+		this.setX(coords[0]);
+		this.setY(coords[1]);
 	},
 	redraw: function() {
 		d3.select("#target")
 			.attr("cx", this.x)
 			.attr("cy", this.y)
 	},
+	updateTarget: function() {
+		targetMotion(this);
+	},
+	motionType: "off",
+	motionTime: 0
 };
+
+function targetMotion(target) {
+	var w = panelPtMass.width;
+	var h = panelPtMass.height;
+	var coords;
+	switch(target.motionType){
+		case "off":
+			return;
+		case "sinusoid":
+			target.setCoords([w/2 + w/4*Math.sin(target.motionTime), h/2]);
+			break;
+		case "circle":
+			target.setCoords([w/2 + h/4*Math.sin(target.motionTime),
+			h/2 + h/4*Math.cos(target.motionTime)])
+			break;
+	};
+	target.motionTime = target.motionTime + .03;
+}
+
 
 var chaser = {
 	x: 400,
@@ -211,13 +235,13 @@ var sliderFreq = new Slider([160, 300], [1, 5], "frequencyRail", "#frequencyCirc
 d3.select("#target").call(
 	d3.behavior.drag()
 		.on("drag", function() {
-			target.setCoords(d3.event.x, d3.event.y);
+			target.setCoords([d3.event.x, d3.event.y]);
 			chaser.updateTarget();
 		}));
 
 d3.select("#panelPtMass").on("click", function() {
 	var clickPos = d3.mouse(this);
-	target.setCoords(clickPos[0], clickPos[1]);
+	target.setCoords(clickPos);
 	target.redraw();
 })
 
@@ -326,6 +350,7 @@ d3.timer(function(t) {
 		chaser.timeStep(dt / nSubStep);
 	}
 
+	target.updateTarget();
 	chaser.updateTarget();
 	chaser.redraw();
 	target.redraw();
@@ -333,3 +358,8 @@ d3.timer(function(t) {
 	sliderFreq.redraw();
 	stepResponse.redraw();
 });
+
+function updateTargetMotion(value) {
+	document.getElementById("motionDescription").innerHTML = "blap";
+	target.motionType = value;
+}
