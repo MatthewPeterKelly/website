@@ -8,11 +8,16 @@ function onMotionSettingChange(checked) {
     document.getElementById("motionDiv").style.display = checked ? "" : "none";
     if(!checked) {
         updateTargetMotion("off");
+    } else {
+        onMotionSettingSelected();
     }
 }
 
 function onMotionSettingSelected(){
-    updateTargetMotion(document.querySelector('input[name="MotionType"]:checked').value);
+    var checkedRadioButton = document.querySelector('input[name="MotionType"]:checked');
+    if(checkedRadioButton) {
+        updateTargetMotion(checkedRadioButton.value);
+    }
 }
 
 

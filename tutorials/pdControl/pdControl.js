@@ -367,6 +367,5 @@ d3.timer(function(t) {
 });
 
 function updateTargetMotion(value) {
-    document.getElementById("motionDescription").innerHTML = "blap";
-    target.motionType = value;
+	target.motionType = value;
 }
