@@ -158,6 +158,7 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
     this.x = 0;
     this.y = document.getElementById(sliderName).getAttribute("y2");
     this.value = initialValue ? initialValue : 1;
+	this.needsRedraw = true;
 
     this.xRange = domain;
     this.valueRange = range;
@@ -179,8 +180,13 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
     this.setX = function(x) {
         this.x = bound(x, this.xRange[0], this.xRange[1]);
         this.value = this.scaleXToValue(this.x);
+		this.needsRedraw = true;
     }
     this.redraw = function() {
+		if(!this.needsRedraw) {
+			return;
+		}
+		this.needsRedraw = false;
         d3.select(circleName)
             .attr("cx", this.x)
             .attr("cy", this.y);
@@ -215,21 +221,16 @@ var sliderDamp = new Slider([160, 300], [.001, 2], "dampingRail", "#dampingCircl
 
 sliderDamp.onRedraw = function() {
     var dampingDisplay = document.getElementById("dampingLevelDescription");
+	var dampingDescriptionName;
     if (!dampingDisplay) {
         return;
     }
 
-    if (this.value < .99) {
-        dampingDisplay.innerHTML = document.getElementById("underDampedDescription").innerHTML;
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "underDampedDescription"]);
-    } else if (this.value > 1.01) {
-        dampingDisplay.innerHTML = document.getElementById("overDampedDescription").innerHTML;
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "overDampedDescription"]);
-    } else {
-        dampingDisplay.innerHTML = document.getElementById("criticallyDampedDescription").innerHTML;
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "criticallyDampedDescription"]);
-    }
+	dampingDescriptionName = this.value < .99 ? "underDampedDescription" :
+		this.value > 1.01 ? "overDampedDescription" : "criticallyDampedDescription";
 
+	dampingDisplay.innerHTML = document.getElementById(dampingDescriptionName).innerHTML;
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub, dampingDescriptionName]);
 }
 
 
