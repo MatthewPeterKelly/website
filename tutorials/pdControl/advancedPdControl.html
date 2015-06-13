@@ -60,8 +60,10 @@
         <br>
         <input type="radio" name="MotionType" value="circle" onchange="onMotionSettingSelected()" autocomplete="off">Circle
         <br>
+        <input type="radio" name="MotionType" value="jump" onchange="onMotionSettingSelected()" autocomplete="off">Jump
+        <br>
     </div>
-    <h2 id="motionDescription">nothing</h2>
+    <input type="checkbox" name="GravityCheckbox" onchange="onGravityChange(this.checked)" autocomplete="off"> Add Gravity
 </div>
 </body>
 <script src="pdControl.js"></script>

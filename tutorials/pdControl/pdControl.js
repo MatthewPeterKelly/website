@@ -7,6 +7,9 @@ function bound(value, min, max) {
     return Math.max(Math.min(value, max), min);
 }
 
+var gravity = 0;
+
+
 var panelPtMass = {
     width: parseInt(document.getElementById("panelPtMass").style.width),
     height: parseInt(document.getElementById("panelPtMass").style.height),
@@ -49,30 +52,15 @@ var target = {
             .attr("cy", this.y)
     },
     updateTarget: function() {
-        targetMotion(this);
+		if(typeof targetMotion === "function") {
+			targetMotion(this);
+		}
     },
     motionType: "off",
     motionTime: 0
 };
 
-function targetMotion(target) {
-    var w = panelPtMass.width;
-    var h = panelPtMass.height;
-    var coords;
-    switch (target.motionType) {
-        case "off":
-            return;
-        case "sinusoid":
-            target.setCoords([w / 2 + w / 4 * Math.sin(target.motionTime), h / 2]);
-            break;
-        case "circle":
-            target.setCoords([w / 2 + h / 4 * Math.sin(target.motionTime),
-                h / 2 + h / 4 * Math.cos(target.motionTime)
-            ])
-            break;
-    };
-    target.motionTime = target.motionTime + .03;
-}
+
 
 
 var chaser = {
@@ -144,7 +132,7 @@ var chaser = {
         var dx = state[2];
         var dy = state[3];
         var ddx = this.kp * (this.xTarget - x) - this.kd * dx;
-        var ddy = this.kp * (this.yTarget - y) - this.kd * dy;
+        var ddy = this.kp * (this.yTarget - y) - this.kd * dy + gravity;
         return [dx, dy, ddx, ddy];
     }
 };
