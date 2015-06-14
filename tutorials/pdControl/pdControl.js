@@ -7,6 +7,9 @@ function bound(value, min, max) {
     return Math.max(Math.min(value, max), min);
 }
 
+var gravity = 0;
+
+
 var panelPtMass = {
     width: parseInt(document.getElementById("panelPtMass").style.width),
     height: parseInt(document.getElementById("panelPtMass").style.height),
@@ -49,30 +52,15 @@ var target = {
             .attr("cy", this.y)
     },
     updateTarget: function() {
-        targetMotion(this);
+		if(typeof targetMotion === "function") {
+			targetMotion(this);
+		}
     },
     motionType: "off",
     motionTime: 0
 };
 
-function targetMotion(target) {
-    var w = panelPtMass.width;
-    var h = panelPtMass.height;
-    var coords;
-    switch (target.motionType) {
-        case "off":
-            return;
-        case "sinusoid":
-            target.setCoords([w / 2 + w / 4 * Math.sin(target.motionTime), h / 2]);
-            break;
-        case "circle":
-            target.setCoords([w / 2 + h / 4 * Math.sin(target.motionTime),
-                h / 2 + h / 4 * Math.cos(target.motionTime)
-            ])
-            break;
-    };
-    target.motionTime = target.motionTime + .03;
-}
+
 
 
 var chaser = {
@@ -144,7 +132,7 @@ var chaser = {
         var dx = state[2];
         var dy = state[3];
         var ddx = this.kp * (this.xTarget - x) - this.kd * dx;
-        var ddy = this.kp * (this.yTarget - y) - this.kd * dy;
+        var ddy = this.kp * (this.yTarget - y) - this.kd * dy + gravity;
         return [dx, dy, ddx, ddy];
     }
 };
@@ -158,6 +146,7 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
     this.x = 0;
     this.y = document.getElementById(sliderName).getAttribute("y2");
     this.value = initialValue ? initialValue : 1;
+	this.needsRedraw = true;
 
     this.xRange = domain;
     this.valueRange = range;
@@ -179,8 +168,13 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
     this.setX = function(x) {
         this.x = bound(x, this.xRange[0], this.xRange[1]);
         this.value = this.scaleXToValue(this.x);
+		this.needsRedraw = true;
     }
     this.redraw = function() {
+		if(!this.needsRedraw) {
+			return;
+		}
+		this.needsRedraw = false;
         d3.select(circleName)
             .attr("cx", this.x)
             .attr("cy", this.y);
@@ -215,21 +209,16 @@ var sliderDamp = new Slider([160, 300], [.001, 2], "dampingRail", "#dampingCircl
 
 sliderDamp.onRedraw = function() {
     var dampingDisplay = document.getElementById("dampingLevelDescription");
+	var dampingDescriptionName;
     if (!dampingDisplay) {
         return;
     }
 
-    if (this.value < .99) {
-        dampingDisplay.innerHTML = document.getElementById("underDampedDescription").innerHTML;
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "underDampedDescription"]);
-    } else if (this.value > 1.01) {
-        dampingDisplay.innerHTML = document.getElementById("overDampedDescription").innerHTML;
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "overDampedDescription"]);
-    } else {
-        dampingDisplay.innerHTML = document.getElementById("criticallyDampedDescription").innerHTML;
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "criticallyDampedDescription"]);
-    }
+	dampingDescriptionName = this.value < .99 ? "underDampedDescription" :
+		this.value > 1.01 ? "overDampedDescription" : "criticallyDampedDescription";
 
+	dampingDisplay.innerHTML = document.getElementById(dampingDescriptionName).innerHTML;
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub, dampingDescriptionName]);
 }
 
 
@@ -366,6 +355,5 @@ d3.timer(function(t) {
 });
 
 function updateTargetMotion(value) {
-    document.getElementById("motionDescription").innerHTML = "blap";
-    target.motionType = value;
+	target.motionType = value;
 }

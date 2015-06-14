@@ -26,7 +26,7 @@
     <div id="overDampedDescription">
         <h2 style="text-align: right; margin: 10%">Over Damped</h2>
         <p>This is what it means to be over damped</p>
-                <div> $$k_d = 2 \xi \omega_n$$ </div>
+        <div> $$k_d = 2 \xi \omega_n$$ </div>
     </div>
 </div>
 <div id="pdColumn2">
@@ -53,15 +53,17 @@
     </div>
 </div>
 <div id="pdColumn3">
-    <input type="checkbox" name="MotionCheckbox" value="Sinusoid" onchange="onMotionSettingChange(this.checked)">Moving Target
+    <input type="checkbox" name="MotionCheckbox" value="Sinusoid" onchange="onMotionSettingChange(this.checked)" autocomplete="off">Moving Target
     <br>
     <div id="motionDiv" style="display:none;margin-left:30px;">
-        <input type="radio" name="MotionType" value="sinusoid" onchange="onMotionSettingSelected()">Sinusoid
+        <input type="radio" name="MotionType" value="sinusoid" onchange="onMotionSettingSelected()" autocomplete="off">Sinusoid
         <br>
-        <input type="radio" name="MotionType" value="circle" onchange="onMotionSettingSelected()">Circle
+        <input type="radio" name="MotionType" value="circle" onchange="onMotionSettingSelected()" autocomplete="off">Circle
+        <br>
+        <input type="radio" name="MotionType" value="jump" onchange="onMotionSettingSelected()" autocomplete="off">Jump
         <br>
     </div>
-    <h2 id="motionDescription">nothing</h2>
+    <input type="checkbox" name="GravityCheckbox" onchange="onGravityChange(this.checked)" autocomplete="off"> Add Gravity
 </div>
 </body>
 <script src="pdControl.js"></script>
