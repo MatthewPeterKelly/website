@@ -88,6 +88,8 @@ var chaser = {
             dt = 50;
         }
 
+
+
         dt = dt / 1000;
         var s1 = [this.x, this.y, this.dx, this.dy];
         var k1 = this.dynamics(s1);
@@ -113,10 +115,18 @@ var chaser = {
         ];
         var k4 = this.dynamics(s4);
 
-        this.x = s1[0] + (dt / 6) * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]);
-        this.y = s1[1] + (dt / 6) * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]);
-        this.dx = s1[2] + (dt / 6) * (k1[2] + 2 * k2[2] + 2 * k3[2] + k4[2]);
-        this.dy = s1[3] + (dt / 6) * (k1[3] + 2 * k2[3] + 2 * k3[3] + k4[3]);
+
+		if(false) {
+			this.x = s1[0] + (dt / 6) * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]);
+			this.y = s1[1] + (dt / 6) * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]);
+			this.dx = s1[2] + (dt / 6) * (k1[2] + 2 * k2[2] + 2 * k3[2] + k4[2]);
+			this.dy = s1[3] + (dt / 6) * (k1[3] + 2 * k2[3] + 2 * k3[3] + k4[3]);
+		} else {
+			this.x = s1[0] + dt * k1[0];
+			this.y = s1[1] + dt * k1[1];
+			this.dx = s1[2] + dt * k1[2];
+			this.dy = s1[3] + dt * k1[3];
+		}
     },
     updateTarget: function() {
         this.xTarget = target.getX();
@@ -222,7 +232,7 @@ sliderDamp.onRedraw = function() {
 }
 
 
-var sliderFreq = new Slider([160, 300], [1, 5], "frequencyRail", "#frequencyCircle", "#frequencyLabel", 3);
+var sliderFreq = new Slider([160, 300], [1, 5], "frequencyRail", "#frequencyCircle", "#frequencyLabel", 1);
 //sliderFreq.scaleXToValue
 
 
