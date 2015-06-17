@@ -13,21 +13,34 @@
 <h1>PD Controller</h1>
 <div id="pdColumn1">
     <div id="dampingLevelDescription" align="justify"></div>
+    <!--this.xTarget = target.getX();-->
+    <!--this.yTarget = target.getY();-->
+    <!--var wn = 2 * Math.PI * sliderFreq.getValue();-->
+    <!--var xi = sliderDamp.getValue();-->
+    <!--this.kp = wn * wn;-->
+    <!--this.kd = 2 * wn * xi;-->
+
+    <!--var ddx = this.kp * (this.xTarget - x) - this.kd * dx;-->
+    <!--var ddy = this.kp * (this.yTarget - y) - this.kd * dy + gravity;-->
     <div id="criticallyDampedDescription">
-        <h2 style="text-align: right; margin: 10%">Critically Damped</h2>
-        <p>This is what it means to be critically damped</p>
-        <div> $$f = k_p (x_{ref}-x) + k_d (v_{ref}-v)$$ </div>
+        <h2 style="text-align: right; margin-right: 10%; margin-top: 0%">Critically Damped</h2>
     </div>
     <div id="underDampedDescription">
-        <h2 style="text-align: right; margin: 10%">Under Damped</h2>
-        <p>This is what it means to be under damped</p>
-        <div> $$k_p = \omega_n^2$$ </div>
+        <h2 style="text-align: right; margin-right: 10%; margin-top: 0%">Under Damped</h2>
     </div>
     <div id="overDampedDescription">
-        <h2 style="text-align: right; margin: 10%">Over Damped</h2>
-        <p>This is what it means to be over damped</p>
-        <div> $$k_d = 2 \xi \omega_n$$ </div>
+        <h2 style="text-align: right; margin-right: 10%; margin-top: 0%">Over Damped</h2>
     </div>
+    <div>
+        <div> $$k_p = \omega_n^2 $$</div>
+        <!--<div> $$ 123 = (2 \pi * F)^2 $$ </div>-->
+        <br>
+        <div> $$k_d = 2 \xi \omega_n$$ </div>
+        <!--<div> $$ 234 = 2 * 345 * 123 $$</div>-->
+        <br>
+        <div> $$f = k_p (x_{ref}-x) + k_d (v_{ref}-v)$$ </div></div>
+    </div>
+
 </div>
 <div id="pdColumn2">
     <div>
@@ -66,5 +79,6 @@
     <input type="checkbox" name="GravityCheckbox" onchange="onGravityChange(this.checked)" autocomplete="off"> Add Gravity
 </div>
 </body>
+<script src="numericalIntegration.js"></script>
 <script src="pdControl.js"></script>
 <script src="advancedPdControl.js"></script>
