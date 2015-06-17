@@ -1,0 +1,45 @@
+
+
+#underDampedDescription { display: none; }
+#overDampedDescription { display: none; }
+#criticallyDampedDescription { display: none; }
+
+#dampingLevelDescription {
+}
+
+
+#pdColumn1 {
+    /*background-repeat: no-repeat;*/
+    width: calc(50% - 450px - 30px);
+    float: left;
+    margin-left: 30px;
+    margin-top: 20px;
+    /*text-align: right;*/
+    /*margin-right: 50%;*/
+    /*text-align: right;*/
+}
+#pdColumn2 {
+    /*background-repeat: no-repeat;*/
+    position:absolute;
+    left:50%;
+    width: 900px;
+    float: left;
+    margin-left:-450px;
+
+    /*align-content: center;*/
+}
+
+#pdColumn3 {
+    width: calc(50% - 450px - 30px);
+    float:right;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+
+p {
+    text-align: inherit;
+    margin-right: auto;
+    margin-left: auto;
+    width: auto;
+    font-size: 18px;
+}

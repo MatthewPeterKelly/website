@@ -7,10 +7,6 @@
 <link rel="stylesheet" type="text/css" href="../../style.css" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
 <script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
-<script type="text/javascript"
-	src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-	
-</script>
 </head>
 
 <body>
@@ -49,7 +45,7 @@
 				y1="30" y2="30" />
             <text x="10" y="30" fill="black" dominant-baseline="central"
 				class="sliderLabel">Damping Ratio:</text>
-            <circle id="damping" class="handle" class="circle" r="14" />
+            <circle id="dampingCircle" class="handle" class="circle" r="14" />
             <text id="dampingLabel" x="30" y="55" fill="black"
 				text-anchor="middle" dominant-baseline="central">0.00</text>
             
@@ -57,7 +53,7 @@
 				x2="300" y1="100" y2="100" />
             <text x="10" y="100" fill="black"
 				dominant-baseline="central" class="sliderLabel">Frequency (Hz):</text>
-            <circle id="frequency" class="handle" class="circle" r="14" />
+            <circle id="frequencyCircle" class="handle" class="circle" r="14" />
             <text id="frequencyLabel" x="0" y="125" fill="black"
 				text-anchor="middle" dominant-baseline="central">0.00</text>
        
@@ -92,10 +88,6 @@
 		natural frequency. How does each affect the step response?
 	</p>
 
-	<!--
-    <div> $$f = k_p (x_{ref}-x) + k_d (v_{ref}-v)$$ </div>
-    <div> $$k_p = \omega_n^2$$ </div>
-    <div> $$k_d = 2 \xi \omega_n$$ </div>
--->
+
 </body>
 <script src="pdControl.js"></script>

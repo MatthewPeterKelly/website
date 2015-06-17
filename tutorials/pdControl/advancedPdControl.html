@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>PD-controllers</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="pdControlStyles.css" />
+    <script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [["$","$"],["\\(","\\)"]]
+    }
+  });
+</script>
+</head>
+<h1>PD Controller</h1>
+<div id="pdColumn1">
+    <div id="dampingLevelDescription" align="justify"></div>
+    <!--this.xTarget = target.getX();-->
+    <!--this.yTarget = target.getY();-->
+    <!--var wn = 2 * Math.PI * sliderFreq.getValue();-->
+    <!--var xi = sliderDamp.getValue();-->
+    <!--this.kp = wn * wn;-->
+    <!--this.kd = 2 * wn * xi;-->
+
+    <!--var ddx = this.kp * (this.xTarget - x) - this.kd * dx;-->
+    <!--var ddy = this.kp * (this.yTarget - y) - this.kd * dy + gravity;-->
+    <div id="criticallyDampedDescription">
+        <h2 style="text-align: right; margin-right: 10%; margin-top: 0%">Critically Damped</h2>
+    </div>
+    <div id="underDampedDescription">
+        <h2 style="text-align: right; margin-right: 10%; margin-top: 0%">Under Damped</h2>
+    </div>
+    <div id="overDampedDescription">
+        <h2 style="text-align: right; margin-right: 10%; margin-top: 0%">Over Damped</h2>
+    </div>
+    <div style="text-align: center">
+        <div> $$k_p = \omega_n^2 $$</div>
+        <div> <b class="kpValue">123</b> $ = (2 \pi * $ <b class="wnValue">123</b> $)^2 $ </div>
+        <br>
+        <div> $$k_d = 2 \xi \omega_n$$ </div>
+        <div id="kdEquation"> <b class="kdValue">123</b> ${= 2 * }$ <b class = chi>234</b> ${* (2\pi * }$ <b class="wnValue">23</b> ${)}$</div>
+        <br>
+        <div> $$f = k_p (x_{ref}-x) + k_d (v_{ref}-v)$$ </div></div>
+
+    </div>
+
+</div>
+<div id="pdColumn2">
+    <div>
+        <svg id="panelPtMass" style="width: 800px; height: 400px;">
+            <circle id="chaser" class="circle" r="8" z-index="-1" />
+            <circle id="target" class="handle" class="circle" r="14" />
+        </svg>
+        <br>
+        <svg id="panelTwo" style="width: 800px; height: 150px;">
+            <line id="dampingRail" class="sliderRail" x1="160" x2="300" y1="30" y2="30" />
+            <text x="10" y="30" fill="black" dominant-baseline="central" class="sliderLabel">Damping Ratio:</text>
+            <circle id="dampingCircle" class="handle" class="circle" r="14" />
+            <text id="dampingLabel" x="30" y="55" fill="black" text-anchor="middle" dominant-baseline="central">0.00</text>
+            <line id="frequencyRail" class="sliderRail" x1="160" x2="300" y1="100" y2="100" />
+            <text x="10" y="100" fill="black" dominant-baseline="central" class="sliderLabel">Frequency (Hz):</text>
+            <circle id="frequencyCircle" class="handle" class="circle" r="14" />
+            <text id="frequencyLabel" x="0" y="125" fill="black" text-anchor="middle" dominant-baseline="central">0.00</text>
+            <text x="335" y="75" transform="rotate(270 335 75)" fill="black" text-anchor="middle" class="axisLabel" dominant-baseline="central">position</text>
+            <text x="550" y="85" fill="black" text-anchor="middle" class="axisLabel" dominant-baseline="central">time</text>
+            <line x1="350" x2="800" y1="75" y2="75" stroke-width="2" stroke="black" />
+            <line x1="350" x2="350" y1="5" y2="145" stroke-width="2" stroke="black" />
+        </svg>
+    </div>
+</div>
+<div id="pdColumn3">
+    <input type="checkbox" name="MotionCheckbox" value="Sinusoid" onchange="onMotionSettingChange(this.checked)" autocomplete="off">Moving Target
+    <br>
+    <div id="motionDiv" style="display:none;margin-left:30px;">
+        <input type="radio" name="MotionType" value="sinusoid" onchange="onMotionSettingSelected()" autocomplete="off">Sinusoid
+        <br>
+        <input type="radio" name="MotionType" value="circle" onchange="onMotionSettingSelected()" autocomplete="off">Circle
+        <br>
+        <input type="radio" name="MotionType" value="jump" onchange="onMotionSettingSelected()" autocomplete="off">Jump
+        <br>
+    </div>
+    <input type="checkbox" name="GravityCheckbox" onchange="onGravityChange(this.checked)" autocomplete="off"> Add Gravity
+</div>
+</body>
+<script src="numericalIntegration.js"></script>
+<script src="pdControl.js"></script>
+<script src="advancedPdControl.js"></script>
