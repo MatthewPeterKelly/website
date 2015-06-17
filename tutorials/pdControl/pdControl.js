@@ -89,34 +89,15 @@ var chaser = {
         }
 
         dt = dt / 1000;
-        var s1 = [this.x, this.y, this.dx, this.dy];
-        var k1 = this.dynamics(s1);
-        var s2 = [
-            s1[0] + 0.5 * dt * k1[0],
-            s1[1] + 0.5 * dt * k1[1],
-            s1[2] + 0.5 * dt * k1[2],
-            s1[3] + 0.5 * dt * k1[3]
-        ];
-        var k2 = this.dynamics(s2);
-        var s3 = [
-            s1[0] + 0.5 * dt * k2[0],
-            s1[1] + 0.5 * dt * k2[1],
-            s1[2] + 0.5 * dt * k2[2],
-            s1[3] + 0.5 * dt * k2[3]
-        ];
-        var k3 = this.dynamics(s3);
-        var s4 = [
-            s1[0] + dt * k3[0],
-            s1[1] + dt * k3[1],
-            s1[2] + dt * k3[2],
-            s1[3] + dt * k3[3]
-        ];
-        var k4 = this.dynamics(s4);
 
-        this.x = s1[0] + (dt / 6) * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]);
-        this.y = s1[1] + (dt / 6) * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]);
-        this.dx = s1[2] + (dt / 6) * (k1[2] + 2 * k2[2] + 2 * k3[2] + k4[2]);
-        this.dy = s1[3] + (dt / 6) * (k1[3] + 2 * k2[3] + 2 * k3[3] + k4[3]);
+        var newx = RungeKutta4Step([this.x, this.dx], dt, this.xdynamics.bind(this));
+        var newy = RungeKutta4Step([this.y, this.dy], dt, this.ydynamics.bind(this));
+
+        this.x = newx[0];
+        this.y = newy[0];
+        this.dx = newx[1];
+        this.dy = newy[1];
+
     },
     updateTarget: function() {
         this.xTarget = target.getX();
@@ -127,13 +108,23 @@ var chaser = {
         this.kd = 2 * wn * xi;
     },
     dynamics: function(state) {
-        var x = state[0];
-        var y = state[1];
-        var dx = state[2];
-        var dy = state[3];
+        var xDyn = this.xdynamics([state[0],state[2]]);
+        var yDyn = this.ydynamics([state[1],state[3]]);
+        return [xDyn[0], yDyn[0], xDyn[1], yDyn[1]];
+    },
+    xdynamics: function(xstate) {
+        var x = xstate[0];
+        var dx = xstate[1];
         var ddx = this.kp * (this.xTarget - x) - this.kd * dx;
+        //console.log(x);
+        //var ddx = (this.xTarget - x);
+        return [dx, ddx];
+    },
+    ydynamics: function(ystate) {
+        var y = ystate[0];
+        var dy = ystate[1];
         var ddy = this.kp * (this.yTarget - y) - this.kd * dy + gravity;
-        return [dx, dy, ddx, ddy];
+        return [dy, ddy];
     }
 };
 
@@ -206,21 +197,6 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
 }
 
 var sliderDamp = new Slider([160, 300], [.001, 2], "dampingRail", "#dampingCircle", "#dampingLabel");
-
-sliderDamp.onRedraw = function() {
-    var dampingDisplay = document.getElementById("dampingLevelDescription");
-	var dampingDescriptionName;
-    if (!dampingDisplay) {
-        return;
-    }
-
-	dampingDescriptionName = this.value < .99 ? "underDampedDescription" :
-		this.value > 1.01 ? "overDampedDescription" : "criticallyDampedDescription";
-
-	dampingDisplay.innerHTML = document.getElementById(dampingDescriptionName).innerHTML;
-	MathJax.Hub.Queue(["Typeset", MathJax.Hub, dampingDescriptionName]);
-}
-
 
 var sliderFreq = new Slider([160, 300], [1, 5], "frequencyRail", "#frequencyCircle", "#frequencyLabel", 3);
 //sliderFreq.scaleXToValue

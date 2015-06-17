@@ -1,11 +1,12 @@
 
 
-#underDampedDescription { visibility: hidden; }
-#overDampedDescription { visibility: hidden; }
-#criticallyDampedDescription { visibility: hidden; }
+#underDampedDescription { display: none; }
+#overDampedDescription { display: none; }
+#criticallyDampedDescription { display: none; }
 
 #dampingLevelDescription {
 }
+
 
 #pdColumn1 {
     /*background-repeat: no-repeat;*/
