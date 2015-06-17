@@ -198,21 +198,6 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
 
 var sliderDamp = new Slider([160, 300], [.001, 2], "dampingRail", "#dampingCircle", "#dampingLabel");
 
-sliderDamp.onRedraw = function() {
-    var dampingDisplay = document.getElementById("dampingLevelDescription");
-	var dampingDescriptionName;
-    if (!dampingDisplay) {
-        return;
-    }
-
-	dampingDescriptionName = this.value < .99 ? "underDampedDescription" :
-		this.value > 1.01 ? "overDampedDescription" : "criticallyDampedDescription";
-
-	dampingDisplay.innerHTML = document.getElementById(dampingDescriptionName).innerHTML;
-	//MathJax.Hub.Queue(["Typeset", MathJax.Hub, dampingDescriptionName]); //Doesn't seem to be necessary
-}
-
-
 var sliderFreq = new Slider([160, 300], [1, 5], "frequencyRail", "#frequencyCircle", "#frequencyLabel", 3);
 //sliderFreq.scaleXToValue
 

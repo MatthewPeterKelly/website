@@ -9,6 +9,13 @@
     <script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [["$","$"],["\\(","\\)"]]
+    }
+  });
+</script>
 </head>
 <h1>PD Controller</h1>
 <div id="pdColumn1">
@@ -31,14 +38,15 @@
     <div id="overDampedDescription">
         <h2 style="text-align: right; margin-right: 10%; margin-top: 0%">Over Damped</h2>
     </div>
-    <div>
+    <div style="text-align: center">
         <div> $$k_p = \omega_n^2 $$</div>
-        <!--<div> $$ 123 = (2 \pi * F)^2 $$ </div>-->
+        <div> <b class="kpValue">123</b> $ = (2 \pi * $ <b class="wnValue">123</b> $)^2 $ </div>
         <br>
         <div> $$k_d = 2 \xi \omega_n$$ </div>
-        <!--<div> $$ 234 = 2 * 345 * 123 $$</div>-->
+        <div id="kdEquation"> <b class="kdValue">123</b> ${= 2 * }$ <b class = chi>234</b> ${* (2\pi * }$ <b class="wnValue">23</b> ${)}$</div>
         <br>
         <div> $$f = k_p (x_{ref}-x) + k_d (v_{ref}-v)$$ </div></div>
+
     </div>
 
 </div>
