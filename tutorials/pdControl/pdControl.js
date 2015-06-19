@@ -14,16 +14,16 @@ var panelPtMass = {
     width: parseInt(document.getElementById("panelPtMass").style.width),
     height: parseInt(document.getElementById("panelPtMass").style.height),
     svg: d3.select("#panelPtMass"),
-    //		init: function() {
-    //		d3.select("#panelPtMass").append("circle")
-    //		.attr("id","chaser")
-    //		.attr("class","circle")
-    //		.arrt("r,6");
-    //		d3.select("#panelPtMass").append("circle")
-    //		.attr("id","target")
-    //		.attr("class","handle")
-    //		.arrt("r,14");
-    //		}
+    //      init: function() {
+    //      d3.select("#panelPtMass").append("circle")
+    //      .attr("id","chaser")
+    //      .attr("class","circle")
+    //      .arrt("r,6");
+    //      d3.select("#panelPtMass").append("circle")
+    //      .attr("id","target")
+    //      .attr("class","handle")
+    //      .arrt("r,14");
+    //      }
 };
 //panelPtMass.init();
 
@@ -52,9 +52,9 @@ var target = {
             .attr("cy", this.y)
     },
     updateTarget: function() {
-		if(typeof targetMotion === "function") {
-			targetMotion(this);
-		}
+        if (typeof targetMotion === "function") {
+            targetMotion(this);
+        }
     },
     motionType: "off",
     motionTime: 0
@@ -82,8 +82,8 @@ var chaser = {
     timeStep: function(dt) {
 
         /* When the page is not on the active tab in firefox, it suspends
-		 animation. When the page is viewed again, it will cause an
-		 extremely large time-step to occur. This is a simple fix. */
+         animation. When the page is viewed again, it will cause an
+         extremely large time-step to occur. This is a simple fix. */
         if (dt > 50) {
             dt = 50;
         }
@@ -108,8 +108,8 @@ var chaser = {
         this.kd = 2 * wn * xi;
     },
     dynamics: function(state) {
-        var xDyn = this.xdynamics([state[0],state[2]]);
-        var yDyn = this.ydynamics([state[1],state[3]]);
+        var xDyn = this.xdynamics([state[0], state[2]]);
+        var yDyn = this.ydynamics([state[1], state[3]]);
         return [xDyn[0], yDyn[0], xDyn[1], yDyn[1]];
     },
     xdynamics: function(xstate) {
@@ -137,7 +137,7 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
     this.x = 0;
     this.y = document.getElementById(sliderName).getAttribute("y2");
     this.value = initialValue ? initialValue : 1;
-	this.needsRedraw = true;
+    this.needsRedraw = true;
 
     this.xRange = domain;
     this.valueRange = range;
@@ -159,13 +159,13 @@ function Slider(domain, range, sliderName, circleName, labelName, initialValue) 
     this.setX = function(x) {
         this.x = bound(x, this.xRange[0], this.xRange[1]);
         this.value = this.scaleXToValue(this.x);
-		this.needsRedraw = true;
+        this.needsRedraw = true;
     }
     this.redraw = function() {
-		if(!this.needsRedraw) {
-			return;
-		}
-		this.needsRedraw = false;
+        if (!this.needsRedraw) {
+            return;
+        }
+        this.needsRedraw = false;
         d3.select(circleName)
             .attr("cx", this.x)
             .attr("cy", this.y);
@@ -214,6 +214,8 @@ d3.select("#panelPtMass").on("click", function() {
     var clickPos = d3.mouse(this);
     target.setCoords(clickPos);
     target.redraw();
+    // onMotionSettingChange(false);     // HACK: Should be done by directly changing the event!
+    // document.getElementById("MotionCheckboxId").checked = false;   // FAIL. This should work, but doesn't
 })
 
 var lineSmooth = d3.svg.line()
@@ -331,5 +333,5 @@ d3.timer(function(t) {
 });
 
 function updateTargetMotion(value) {
-	target.motionType = value;
+    target.motionType = value;
 }

@@ -6,16 +6,16 @@
 
 function onMotionSettingChange(checked) {
     document.getElementById("motionDiv").style.display = checked ? "" : "none";
-    if(!checked) {
+    if (!checked) {
         updateTargetMotion("off");
     } else {
         onMotionSettingSelected();
     }
 }
 
-function onMotionSettingSelected(){
+function onMotionSettingSelected() {
     var checkedRadioButton = document.querySelector('input[name="MotionType"]:checked');
-    if(checkedRadioButton) {
+    if (checkedRadioButton) {
         updateTargetMotion(checkedRadioButton.value);
     }
 }
@@ -33,10 +33,26 @@ function targetMotion(target) {
             break;
         case "circle":
             target.setCoords([w / 2 + h / 4 * Math.sin(t),
-                h / 2 + h / 4 * Math.cos(t)]);
+                h / 2 + h / 4 * Math.cos(t)
+            ]);
             break;
         case "jump":
-            target.setCoords([w/4 + w/2 * Math.floor(t%2), h/2]);
+            var jumpRate = 0.5;
+            var jumpIdx = Math.floor((jumpRate * t) % 4)
+            switch (jumpIdx) {
+                case 0:
+                    target.setCoords([w / 4, h / 3]);
+                    break;
+                case 1:
+                    target.setCoords([3 * w / 4, h / 3]);
+                    break;
+                case 2:
+                    target.setCoords([3 * w / 4, 2 * h / 3]);
+                    break;
+                case 3:
+                    target.setCoords([w / 4, 2 * h / 3]);
+                    break;
+            }
             break;
     }
     target.motionTime = target.motionTime + .03;
@@ -73,7 +89,7 @@ sliderFreq.onRedraw = function() {
 
 function setAll(classname, value) {
     var elements = document.getElementsByClassName(classname)
-    for(var i in elements){
+    for (var i in elements) {
         elements[i].innerHTML = value.toFixed(2);
     }
 

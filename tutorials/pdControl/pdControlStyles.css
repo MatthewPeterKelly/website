@@ -1,6 +1,6 @@
 
 
-#underDampedDescription { display: none; }
+#underDampedDescription { display: none; } 
 #overDampedDescription { display: none; }
 #criticallyDampedDescription { display: none; }
 
@@ -40,7 +40,6 @@ p {
     text-align: left;
     margin-right: auto;
     margin-left: auto;
-    width: auto;
     font-size: 18px;
 }
 
