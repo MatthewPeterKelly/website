@@ -53,14 +53,14 @@ sliderDamp.onRedraw = function() {
     if (!dampingDisplay) {
         return;
     }
-    var dampingDescriptionName = this.value < .99 ? "underDampedDescription" :
-        this.value > 1.01 ? "overDampedDescription" : "criticallyDampedDescription";
+    var dampingDescriptionName = this.value < .95 ? "underDampedDescription" :
+        this.value > 1.05 ? "overDampedDescription" : "criticallyDampedDescription";
 
     dampingDisplay.innerHTML = document.getElementById(dampingDescriptionName).innerHTML;
 
 
     setAll("kdValue", chaser.kd);
-    setAll("chi", sliderDamp.getValue());
+    setAll("xiValue", sliderDamp.getValue());
 
 };
 

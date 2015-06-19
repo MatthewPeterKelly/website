@@ -37,9 +37,42 @@
 }
 
 p {
-    text-align: inherit;
+    text-align: left;
     margin-right: auto;
     margin-left: auto;
     width: auto;
     font-size: 18px;
+}
+
+
+
+/* THIS IS A HACK: 
+DIRECT COPY FROM TOP LEVEL STYLE FILE */
+.header {
+    text-align: center;
+    color: #000000;
+}
+.header ul {
+    text-align: center;
+    padding: 0;
+    list-style-type: none;
+}
+.header ul li {
+    display: inline;
+    margin: 0.2em;
+}
+.header ul li a {
+    text-decoration: none;
+    padding: .2em 0.8em;
+    color: #B5B4DC;
+    background-color: #2114D4;
+    border-radius: 0.3em;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.header ul li a:hover {
+    color: #2114D4;
+    background-color: #B5B4DC;
+    text-decoration: underline;
+    border-radius: 0.3em;
 }
