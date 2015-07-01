@@ -169,9 +169,12 @@
 
 
 		<h2>Non-linear control design for extensional rheometer </h2>
-		<p> In my last year of undergrad, I worked as a research assistant at MIT, in Gareth McKinley's non-newtonian fluids lab.
-			The project was to design and implement a non-linear controller to track an exponentially growing reference trajectory.
-			
+		<p> 
+			In my last year of undergrad, I worked as a research assistant in the <a href="http://web.mit.edu/nnf/">Non-Newtonian Fluids lab at MIT</a>, along with <a href="https://www.linkedin.com/pub/timothy-lannin/93/902/985"> Tim Lannin </a> and <a href = "https://www.linkedin.com/pub/will-langford/16/880/164"> Will Langford</a>. 
+			Our goal was to design and implement a non-linear tracking controller on their Filament Stretching Extensional Rheometer (<a href="http://web.mit.edu/nnf/presentation/sld004.htm">FiSER</a>) and to redesign the LabVIEW program that ran the experiments.
+		</p>
+		<p>
+			FiSER characterizes fluids by rapidly stretching them, and measuring both the axial force on the fluid and the diameter of the sample in real time. The original experiments were done by using open-loop velocity profiles for the two measurement stages of the device. We implemented a controller that adjusted the speed of the stages in real-time to track a desired diameter profile in the specimen. This was challenging because the reference trajectories were all exponential, requiring the use of non-linear control techniques. The data acquisition, control, and estimation code were written in LabVIEW and compiled to a National Instruments cRIO and FPGA.		
 		</p>
 
 		<h2>Journal of Chem. Education Paper</h2>
