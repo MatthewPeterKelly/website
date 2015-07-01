@@ -14,22 +14,13 @@ var panelPtMass = {
     width: parseInt(document.getElementById("panelPtMass").style.width),
     height: parseInt(document.getElementById("panelPtMass").style.height),
     svg: d3.select("#panelPtMass"),
-    //      init: function() {
-    //      d3.select("#panelPtMass").append("circle")
-    //      .attr("id","chaser")
-    //      .attr("class","circle")
-    //      .arrt("r,6");
-    //      d3.select("#panelPtMass").append("circle")
-    //      .attr("id","target")
-    //      .attr("class","handle")
-    //      .arrt("r,14");
-    //      }
+
 };
 //panelPtMass.init();
 
 var target = {
-    x: panelPtMass.width/2,
-    y: 3*panelPtMass.height/5,
+    x: 0,
+    y: 0,
     getX: function() {
         return this.x;
     },
@@ -50,25 +41,26 @@ var target = {
     redraw: function() {
         d3.select("#target")
             .attr("x", this.x - document.getElementById("target").getAttribute("width")/2)
-            .attr("y", this.y - document.getElementById("target").getAttribute("height")/2)
-    },
-    updateTarget: function() {
-        if (typeof targetMotion === "function") {
-            targetMotion(this);
-        }
+            .attr("y", this.y - document.getElementById("target").getAttribute("height")/2);
     },
     motionType: "off",
-    motionTime: 0
+    motionTime: 0,
+    reset: function () {
+        this.x = panelPtMass.width / 2 - 1 ;
+        this.y = 3 * panelPtMass.height / 5;
+        chaser.updateTarget();
+    }
 };
 
 
 
 
+
 var chaser = {
-    x: panelPtMass.width/2,
-    y: (3/5 - 1/4)*panelPtMass.height,
-    xTarget: target.getX()+5,
-    yTarget: target.getY(),
+    x: 0,
+    y: 0,
+    xTarget: 0,
+    yTarget: 0,
     dx: 0,
     dy: 0,
     ddx: 0,
@@ -85,7 +77,9 @@ var chaser = {
             .attr("y1", this.y)
             .attr("x2", this.xTarget)
             .attr("y2", this.yTarget)
+        this.onRedraw();
     },
+    onRedraw: function() {},
     timeStep: function(dt) {
 
         /* When the page is not on the active tab in firefox, it suspends
@@ -139,7 +133,19 @@ var chaser = {
         return Math.sqrt((this.yTarget - this.y)*(this.yTarget - this.y) + (this.xTarget - this.x)*(this.xTarget - this.x));
     },
 
+    reset: function () {
+        this.x = panelPtMass.width / 2;
+        this.y = (3 / 5 - 1 / 4) * panelPtMass.height;
+        this.xTarget = target.getX();
+        this.yTarget = target.getY();
+        this.dx = 0;
+        this.dy = 0;
+        this.ddx = 0;
+        this.ddy = 0;
+    }
+
 };
+
 
 var formatLabelString = d3.format(".2f");
 
@@ -152,22 +158,8 @@ var sliderGravity = new Slider([160, 300], [0, 1], "gravityRail", "#gravityCircl
 
 
 
-d3.select("#target").call(
-    d3.behavior.drag()
-    .on("drag", function() {
-        target.setCoords([d3.event.x, d3.event.y]);
-        chaser.updateTarget();
-    }));
-
-//d3.select("#panelPtMass").on("click", function() {
-//    var clickPos = d3.mouse(this);
-//    target.setCoords(clickPos);
-//    target.redraw();
-//    // onMotionSettingChange(false);     // HACK: Should be done by directly changing the event!
-//    // document.getElementById("MotionCheckboxId").checked = false;   // FAIL. This should work, but doesn't
-//})
-
-
+target.reset();
+chaser.reset();
 
 
 
@@ -183,8 +175,6 @@ d3.timer(function(t) {
         chaser.timeStep(dt / nSubStep);
     }
 
-    target.updateTarget();
-    chaser.updateTarget();
     chaser.redraw();
     target.redraw();
     sliderDamp.redraw();
@@ -192,6 +182,3 @@ d3.timer(function(t) {
 
 });
 
-function updateTargetMotion(value) {
-    target.motionType = value;
-}

@@ -7,7 +7,12 @@
     <link rel="stylesheet" type="text/css" href="../style.css" />
     <link rel="stylesheet" type="text/css" href="cartStyles.css" />
     <script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] }, jax: ["input/TeX","output/HTML-CSS"], displayAlign: "left" });
+    </script>
+
 
 
 <script>
@@ -34,7 +39,8 @@
         </ul>
     </div>
     <div id="pdColumn1">
-
+        <button type="button" onclick="resetPendulum()">Reset</button><br/>
+        <div style="text-align: left"> $\theta = $ <b id="ThetaValue"></b></div>
     </div>
     </div>
     <div id="pdColumn2">
@@ -67,5 +73,6 @@
     </div>
 </body>
 <script src="../numericalIntegration.js"></script>
+<script src="../SliderUtils.js"></script>
 <script src="cartPole.js"></script>
-<script src="cartPoleAdvanced.js"></script>
+<script src="balancingPole.js"></script>
