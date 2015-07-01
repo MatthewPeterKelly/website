@@ -5,10 +5,10 @@
 gravity = 10000;
 
 function resetPendulum(){
-    target.reset();
-    chaser.reset();
+    cart.reset();
+    poleMass.reset();
 }
 
-chaser.onRedraw = function() {
-    document.getElementById("ThetaValue").innerHTML = Math.round(Math.atan2(chaser.xTarget - chaser.x, chaser.yTarget - chaser.y) * 180/Math.PI);
+poleMass.onRedraw = function() {
+    document.getElementById("ThetaValue").innerHTML = Math.round(Math.atan2(poleMass.xTarget - poleMass.x, poleMass.yTarget - poleMass.y) * 180/Math.PI);
 }

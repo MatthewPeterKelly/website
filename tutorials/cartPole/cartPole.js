@@ -18,7 +18,7 @@ var panelPtMass = {
 };
 //panelPtMass.init();
 
-var target = {
+var cart = {
     x: 0,
     y: 0,
     getX: function() {
@@ -39,16 +39,16 @@ var target = {
         this.setY(coords[1]);
     },
     redraw: function() {
-        d3.select("#target")
-            .attr("x", this.x - document.getElementById("target").getAttribute("width")/2)
-            .attr("y", this.y - document.getElementById("target").getAttribute("height")/2);
+        d3.select("#cart")
+            .attr("x", this.x - document.getElementById("cart").getAttribute("width")/2)
+            .attr("y", this.y - document.getElementById("cart").getAttribute("height")/2);
     },
     motionType: "off",
     motionTime: 0,
     reset: function () {
         this.x = panelPtMass.width / 2 - 1 ;
         this.y = 3 * panelPtMass.height / 5;
-        chaser.updateTarget();
+        poleMass.updateTarget();
     }
 };
 
@@ -56,7 +56,7 @@ var target = {
 
 
 
-var chaser = {
+var poleMass = {
     x: 0,
     y: 0,
     xTarget: 0,
@@ -69,7 +69,7 @@ var chaser = {
     kd: 1,
     poleLength: panelPtMass.height/4,
     redraw: function() {
-        d3.select("#chaser")
+        d3.select("#poleMass")
             .attr("cx", this.x)
             .attr("cy", this.y)
         d3.select("#pole")
@@ -100,8 +100,8 @@ var chaser = {
 
     },
     updateTarget: function() {
-        this.xTarget = target.getX();
-        this.yTarget = target.getY();
+        this.xTarget = cart.getX();
+        this.yTarget = cart.getY();
         var wn = 2 * Math.PI * sliderGravity.getValue();
         var xi = sliderDamp.getValue();
         this.kp = wn * wn;
@@ -136,8 +136,8 @@ var chaser = {
     reset: function () {
         this.x = panelPtMass.width / 2;
         this.y = (3 / 5 - 1 / 4) * panelPtMass.height;
-        this.xTarget = target.getX();
-        this.yTarget = target.getY();
+        this.xTarget = cart.getX();
+        this.yTarget = cart.getY();
         this.dx = 0;
         this.dy = 0;
         this.ddx = 0;
@@ -158,8 +158,8 @@ var sliderGravity = new Slider([160, 300], [0, 1], "gravityRail", "#gravityCircl
 
 
 
-target.reset();
-chaser.reset();
+cart.reset();
+poleMass.reset();
 
 
 
@@ -172,11 +172,11 @@ d3.timer(function(t) {
 
     var nSubStep = 5;
     for (i = 0; i < nSubStep; i++) {
-        chaser.timeStep(dt / nSubStep);
+        poleMass.timeStep(dt / nSubStep);
     }
 
-    chaser.redraw();
-    target.redraw();
+    poleMass.redraw();
+    cart.redraw();
     sliderDamp.redraw();
     sliderGravity.redraw();
 

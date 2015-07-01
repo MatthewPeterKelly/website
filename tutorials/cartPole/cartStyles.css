@@ -7,6 +7,10 @@
 #dampingLevelDescription {
 }
 
+#poleMass {
+    fill: hsl(220, 85%, 40%);
+}
+
 
 #pdColumn1 {
     /*background-repeat: no-repeat;*/

@@ -39,15 +39,15 @@
         </ul>
     </div>
     <div id="pdColumn1">
-        <button type="button" onclick="resetPendulum()">Reset</button><br/>
+        <button type="button" onclick="resetPendulum()">Reset</button> <br><br>
         <div style="text-align: left"> $\theta = $ <b id="ThetaValue"></b></div>
     </div>
     </div>
     <div id="pdColumn2">
         <div align="center">
             <svg id="panelPtMass" style="width: 800px; height: 400px;">
-                <circle id="chaser" class="circle" r="8" z-index="-1" />
-                <rect id="target" class="handle" class="circle" width="50" height="20" />
+                <circle id="poleMass" class="circle" r="8" z-index="-1" />
+                <rect id="cart" class="handle" class="circle" width="50" height="20" />
                 <line id="pole" class="line" x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(0,0,0);stroke-width:4" />
             </svg>
             <br>
