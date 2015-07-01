@@ -60,7 +60,7 @@ function targetMotion(target) {
 
 
 function onGravityChange(checked) {
-    gravity = 10000 * checked
+    gravity = 10000 * checked;
 }
 
 

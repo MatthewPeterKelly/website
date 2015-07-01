@@ -49,8 +49,8 @@ var target = {
     },
     redraw: function() {
         d3.select("#target")
-            .attr("cx", this.x)
-            .attr("cy", this.y)
+            .attr("x", this.x - document.getElementById("target").getAttribute("width")/2)
+            .attr("y", this.y - document.getElementById("target").getAttribute("height")/2)
     },
     updateTarget: function() {
         if (typeof targetMotion === "function") {
@@ -112,7 +112,7 @@ var chaser = {
         var xi = sliderDamp.getValue();
         this.kp = wn * wn;
         this.kd = xi;
-        gravity = sliderGravity.getValue() * 10000;
+
     },
     dynamics: function(state) {
 
@@ -121,14 +121,15 @@ var chaser = {
         var dx = state[2];
         var dy = state[3];
         var r = this.distFromTarget();
+        var poleDamping = 100;
 
         var dr_x = x*(x*dx + y*dy)/(r*r);
         var dr_y = y*(x*dx + y*dy)/(r*r);
         var dtheta_x = dx - dr_x;
         var dtheta_y = dy - dr_y;
 
-        var ddx = 100*x * (this.poleLength - r) - 100*dr_x - this.kd * dtheta_x;
-        var ddy = 100*y * (this.poleLength - r) - 100*dr_y - this.kd * dtheta_y + gravity;
+        var ddx = 100*x * (this.poleLength - r) - poleDamping*dr_x - this.kd * dtheta_x;
+        var ddy = 100*y * (this.poleLength - r) - poleDamping*dr_y - this.kd * dtheta_y + gravity;
 
 
         return [dx, dy, ddx, ddy];
@@ -137,78 +138,12 @@ var chaser = {
     distFromTarget: function() {
         return Math.sqrt((this.yTarget - this.y)*(this.yTarget - this.y) + (this.xTarget - this.x)*(this.xTarget - this.x));
     },
-    polarVelocities: function(state) {
-        var Vel_r = Math.sqrt()
-    }
+
 };
 
 var formatLabelString = d3.format(".2f");
 
-/*
- Define a slider class
- */
-function Slider(domain, range, sliderName, circleName, labelName, initialValue) {
-    this.x = 0;
-    this.y = document.getElementById(sliderName).getAttribute("y2");
-    this.value = initialValue !== undefined ? initialValue : 1;
-    this.needsRedraw = true;
 
-    this.xRange = domain;
-    this.valueRange = range;
-
-    this.scaleXToValue = d3.scale.linear()
-        .domain(this.xRange)
-        .range(this.valueRange);
-    this.scaleValueToX = d3.scale.linear()
-        .domain(this.valueRange)
-        .range(this.xRange);
-
-
-    this.getValue = function() {
-        return this.value
-    };
-    this.setValue = function(value) {
-        this.setX(this.scaleValueToX(value));
-    }
-    this.setX = function(x) {
-        this.x = bound(x, this.xRange[0], this.xRange[1]);
-        this.value = this.scaleXToValue(this.x);
-        this.needsRedraw = true;
-    }
-    this.redraw = function() {
-        if (!this.needsRedraw) {
-            return;
-        }
-        this.needsRedraw = false;
-        d3.select(circleName)
-            .attr("cx", this.x)
-            .attr("cy", this.y);
-        d3.select(labelName)
-            .text(formatLabelString(this.value))
-            .attr("x", this.x);
-        this.onRedraw();
-    }
-
-    this.onRedraw = function() {}
-
-    this.initialize = function() {
-        this.setValue(this.value);
-        var sliderReference = this;
-
-        d3.select(circleName).call(
-            d3.behavior.drag()
-            .on("drag", function() {
-                sliderReference.setX(d3.event.x);
-            }));
-
-        d3.select("#" + sliderName).on("click", function() {
-            var clickPos = d3.mouse(this);
-            sliderReference.setX(clickPos[0]);
-        })
-    }
-
-    this.initialize();
-}
 
 var sliderDamp = new Slider([160, 300], [.001, 2], "dampingRail", "#dampingCircle", "#dampingLabel");
 

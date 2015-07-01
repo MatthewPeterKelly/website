@@ -41,7 +41,7 @@
         <div align="center">
             <svg id="panelPtMass" style="width: 800px; height: 400px;">
                 <circle id="chaser" class="circle" r="8" z-index="-1" />
-                <circle id="target" class="handle" class="circle" r="14" />
+                <rect id="target" class="handle" class="circle" width="50" height="20" />
                 <line id="pole" class="line" x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(0,0,0);stroke-width:4" />
             </svg>
             <br>
@@ -67,5 +67,6 @@
     </div>
 </body>
 <script src="../numericalIntegration.js"></script>
+<script src="../SliderUtils.js"></script>
 <script src="cartPole.js"></script>
-<script src="cartPoleAdvanced.js"></script>
+<script src="poleOnACart.js"></script>
