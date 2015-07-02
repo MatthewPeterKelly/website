@@ -30,7 +30,7 @@
 
 <body>
     <div class="header">
-        <h1>Pole on a Cart</h1>
+        <h1>Balance the Pole</h1>
         <ul>
             <li><a href="../../index.html">home</a></li>
             <li><a href="../../research/index.html">research</a></li>
@@ -40,7 +40,7 @@
     </div>
     <div id="pdColumn1">
         <button type="button" onclick="resetPendulum()">Reset</button> <br><br>
-        <div style="text-align: left"> $\theta = $ <b id="ThetaValue"></b></div>
+        <div style="text-align: left" > $\theta = $ <pre style="display: inline"> <b id="ThetaValue"></b></pre></div>
     </div>
     </div>
     <div id="pdColumn2">
@@ -52,14 +52,14 @@
             </svg>
             <br>
             <svg id="panelTwo" style="width: 800px; height: 150px;">
-                <line id="dampingRail" class="sliderRail" x1="160" x2="300" y1="30" y2="30" />
-                <text x="10" y="30" fill="black" dominant-baseline="central" class="sliderLabel">Damping Ratio:</text>
-                <circle id="dampingCircle" class="handle" class="circle" r="14" />
-                <text id="dampingLabel" x="30" y="55" fill="black" text-anchor="middle" dominant-baseline="central">0.00</text>
-                <line id="gravityRail" class="sliderRail" x1="160" x2="300" y1="100" y2="100" />
-                <text x="10" y="100" fill="black" dominant-baseline="central" class="sliderLabel">Gravity:</text>
-                <circle id="gravityCircle" class="handle" class="circle" r="14" />
-                <text id="gravityLabel" x="0" y="125" fill="black" text-anchor="middle" dominant-baseline="central">0.00</text>
+                <line id="kpRail" class="sliderRail" x1="160" x2="300" y1="30" y2="30" />
+                <text x="10" y="30" fill="black" dominant-baseline="central" class="sliderLabel">Kp:</text>
+                <circle id="kpCircle" class="handle" class="circle" r="14" />
+                <text id="kpLabel" x="30" y="55" fill="black" text-anchor="middle" dominant-baseline="central">0.00</text>
+                <line id="kdRail" class="sliderRail" x1="160" x2="300" y1="100" y2="100" />
+                <text x="10" y="100" fill="black" dominant-baseline="central" class="sliderLabel">Kd:</text>
+                <circle id="kdCircle" class="handle" class="circle" r="14" />
+                <text id="kdLabel" x="0" y="125" fill="black" text-anchor="middle" dominant-baseline="central">0.00</text>
 
             </svg>
         </div>
@@ -68,7 +68,16 @@
 
     </div>
     <div id="pdColumn3">
-
+        <button type="button" onclick="setExampleParams(12.5, 1.1)">Give me okay values!</button> <br><br>
+        <button type="button" onclick="setExampleParams(40,4)">Give me good values!</button> <br><br>
+        <input id="anyNoiseCheckbox" type="checkbox" onchange="toggles.changeNoise()" autocomplete="off">Add Noise<br>
+        <div id="noiseDiv" style="visibility:hidden; margin-left:30px;">
+            <input id="randomCheckbox" type="checkbox" onchange="toggles.changeNoise()">Random<br>
+            <input id="systematicCheckbox" type="checkbox" onchange="toggles.changeNoise()">Systematic<br>
+        </div>
+        <br>
+        <br>
+        <button id="pauseControllerButton" type="button">Pause Controller</button>
 
     </div>
 </body>

@@ -16,11 +16,12 @@ var panelPtMass = {
     svg: d3.select("#panelPtMass"),
 
 };
-//panelPtMass.init();
 
 var cart = {
     x: 0,
     y: 0,
+    dx: 0,
+    dy: 0,
     getX: function() {
         return this.x;
     },
@@ -38,6 +39,7 @@ var cart = {
         this.setX(coords[0]);
         this.setY(coords[1]);
     },
+    timeStep: function(dt) {    },
     redraw: function() {
         d3.select("#cart")
             .attr("x", this.x - document.getElementById("cart").getAttribute("width")/2)
@@ -48,12 +50,11 @@ var cart = {
     reset: function () {
         this.x = panelPtMass.width / 2 - 1 ;
         this.y = 3 * panelPtMass.height / 5;
-        poleMass.updateTarget();
+        this.dx = 0;
+        this.dy = 0;
+        poleMass.updateCartPos();
     }
 };
-
-
-
 
 
 var poleMass = {
@@ -65,8 +66,11 @@ var poleMass = {
     dy: 0,
     ddx: 0,
     ddy: 0,
-    kp: 5,
     kd: 1,
+    theta:0,
+    systematicThetaError:0,
+    useRandomError: false,
+    useSystematicError: false,
     poleLength: panelPtMass.height/4,
     redraw: function() {
         d3.select("#poleMass")
@@ -82,14 +86,7 @@ var poleMass = {
     onRedraw: function() {},
     timeStep: function(dt) {
 
-        /* When the page is not on the active tab in firefox, it suspends
-         animation. When the page is viewed again, it will cause an
-         extremely large time-step to occur. This is a simple fix. */
-        if (dt > 10) {
-            dt = 10;
-        }
 
-        dt = dt / 1000;
 
         var newState = RungeKutta4Step([this.x, this.y, this.dx, this.dy], dt, this.dynamics.bind(this));
 
@@ -98,15 +95,17 @@ var poleMass = {
         this.dx = newState[2];
         this.dy = newState[3];
 
+        //console.log(this.useRandomError);
+        var error = (Math.random() - .5) * .03 * this.useRandomError + this.systematicThetaError * this.useSystematicError;
+        this.theta = Math.atan2(poleMass.xTarget - poleMass.x, poleMass.yTarget - poleMass.y) + error;
+
     },
-    updateTarget: function() {
+    updateCartPos: function(){
         this.xTarget = cart.getX();
         this.yTarget = cart.getY();
-        var wn = 2 * Math.PI * sliderGravity.getValue();
-        var xi = sliderDamp.getValue();
-        this.kp = wn * wn;
-        this.kd = xi;
-
+    },
+    updateParams: function(kd) {
+        this.kd = kd;
     },
     dynamics: function(state) {
 
@@ -142,6 +141,8 @@ var poleMass = {
         this.dy = 0;
         this.ddx = 0;
         this.ddy = 0;
+        this.theta = 0;
+        this.systematicThetaError = (Math.random()-0.5) * 0.003;
     }
 
 };
@@ -150,13 +151,7 @@ var poleMass = {
 var formatLabelString = d3.format(".2f");
 
 
-
-var sliderDamp = new Slider([160, 300], [.001, 2], "dampingRail", "#dampingCircle", "#dampingLabel");
-
-var sliderGravity = new Slider([160, 300], [0, 1], "gravityRail", "#gravityCircle", "#gravityLabel",0.1);
-//sliderGravity.scaleXToValue
-
-
+function doOtherUpdates(){}
 
 cart.reset();
 poleMass.reset();
@@ -167,18 +162,22 @@ poleMass.reset();
 var tLast = 0,
     dt = 0;
 d3.timer(function(t) {
-    dt = t - tLast;
+    /* When the page is not on the active tab in firefox, it suspends
+     animation. When the page is viewed again, it will cause an
+     extremely large time-step to occur. This is a simple fix. */
+    dt = Math.min(t - tLast, 50)/1000;
     tLast = t;
 
     var nSubStep = 5;
     for (i = 0; i < nSubStep; i++) {
         poleMass.timeStep(dt / nSubStep);
+        cart.timeStep(dt/nSubStep);
     }
 
+    poleMass.updateCartPos();
     poleMass.redraw();
     cart.redraw();
-    sliderDamp.redraw();
-    sliderGravity.redraw();
+    doOtherUpdates();
 
 });
 
