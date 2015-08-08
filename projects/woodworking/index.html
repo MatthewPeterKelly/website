@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="http://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet" type="text/css">
+    <title>Woodworking</title>
+</head>
+
+<body>
+    <h1>Woodworking Projects</h1>
+
+<div class = "signature"> - By Matthew Kelly</div>
+
+    <h2>Cherry Wine Rack</h2>
+    <p>I designed this wine rack for my parents. It holds four bottles of wine (two on top, two on bottom). I got the wood from a dead cherry tree that I cut down right behind my house. My dad helped my mill the tree into boards and then plane it. I tried to be more creative with this project, adding curved cuts thoughout. January-July 2015.</p>
+    <img id="CherryWineRack" src="CherryWineRack.jpg" height="400" onclick="enlarge('CherryWineRack',400,800)">
+    
+    <h2>Maple Bowl</h2>
+    <p>I recently cut down a maple tree for firewood, and decided to try to make a bowl out of the base of the tree. This is one of the largest bowls that I've tried to make, and also perhaps the thinnest. Click on the photo for details. July 2015 </p>
+    <img id="MapleBowl" src="MapleBowl_small.jpg" onclick="swap('MapleBowl','MapleBowl_small.jpg', 'MapleBowl_large.png')">
+</body>
+
+</html>
+<script type="text/javascript">
+function enlarge(ID, low, upp) {
+    if (document.getElementById(ID).height == low) {
+        document.getElementById(ID).height = upp
+    } else {
+        document.getElementById(ID).height = low
+    }
+}
+
+function swap(ID, imgOne, imgTwo) {
+    if (document.getElementById(ID).src.indexOf(imgOne) > 0) {
+        document.getElementById(ID).src = imgTwo;
+    } else {
+        document.getElementById(ID).src = imgOne;
+    }
+}
+</script>

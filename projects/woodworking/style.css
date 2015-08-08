@@ -1,0 +1,55 @@
+     body {
+     background: #111;
+     width: 1000px;
+     margin: 0 auto;
+ }
+ 
+ a {
+     cursor: pointer;
+     word-wrap: break-word;
+     text-decoration: none;
+     color: #b3b3b3;
+ }
+ 
+ a:hover {
+     text-decoration: underline;
+     color: #f3f3f3;
+ }
+ 
+ img {
+     max-width: 100%;
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     cursor: pointer;
+ }
+ 
+ h1 {
+     font: 400 64px 'Great Vibes', Helvetica, sans-serif;
+     text-align: center;
+     color: #777777;
+ }
+ 
+ .signature {
+     font: 400 24px 'Great Vibes', Helvetica, sans-serif;
+     text-align: right;
+     margin-right: 150px; 
+     margin-top: -35px; 
+     color: #777777;
+ }
+
+ h2 {
+     font: 400 32px/1.2 'Merienda One', Helvetica, sans-serif;
+     text-align: left;
+     color: #666666;
+    margin-left: 100px;
+
+ }
+ 
+ p {
+     font: 100 16px/1.2 Helvetica, sans-serif;
+     color: #555555;
+     margin-left: 150px;
+     margin-right: 150px;
+ }
+ 
