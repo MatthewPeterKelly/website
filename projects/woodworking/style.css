@@ -30,6 +30,14 @@
      color: #777777;
  }
  
+ .annotation {
+     font: 400 18px 'Merienda One', Helvetica, sans-serif;
+     text-align: center;
+     margin-top: 20px;
+     margin-bottom: 20px;
+     color: #2233aa;
+ }
+
  .signature {
      font: 400 24px 'Great Vibes', Helvetica, sans-serif;
      text-align: right;
@@ -39,11 +47,10 @@
  }
 
  h2 {
-     font: 400 32px/1.2 'Merienda One', Helvetica, sans-serif;
+     font: 400 32px 'Merienda One', Helvetica, sans-serif;
      text-align: left;
      color: #666666;
     margin-left: 100px;
-
  }
  
  p {
