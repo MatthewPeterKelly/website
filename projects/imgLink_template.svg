@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="400"
+   height="400"
+   id="svg5739"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="imgLink_template.svg"
+   inkscape:export-filename="/home/matt/Git/Website/projects/imgLink_fractals.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs5741">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath6361">
+      <rect
+         ry="50"
+         rx="50"
+         y="656.36212"
+         x="-2"
+         height="400"
+         width="400"
+         id="rect6363"
+         style="fill:#777777;fill-opacity:1;stroke:#777777;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="54.476213"
+     inkscape:cy="207.5924"
+     inkscape:document-units="px"
+     inkscape:current-layer="g6365"
+     showgrid="false"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5744">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-652.36218)">
+    <g
+       id="g6365"
+       transform="translate(2,-3.9999416)">
+      <rect
+         style="fill:#1e1e1e;fill-opacity:1;stroke:none"
+         id="rect6389"
+         width="400"
+         height="400"
+         x="-2"
+         y="656.36212"
+         rx="50"
+         ry="50" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text5772"
+         y="870.13678"
+         x="91.746078"
+         style="font-size:64.06808472px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;font-family:URW Chancery L;-inkscape-font-specification:URW Chancery L Bold Italic"
+         xml:space="preserve"><tspan
+           y="870.13678"
+           x="91.746078"
+           id="tspan5774"
+           sodipodi:role="line">Template</tspan></text>
+    </g>
+  </g>
+</svg>

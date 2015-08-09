@@ -43,6 +43,9 @@
      display: block;
      margin-left: auto;
      margin-right: auto;
+ }
+
+ .clickable {
      cursor: pointer;
  }
  
@@ -66,3 +69,13 @@
      margin-right: 150px;
  }
  
+ table {
+    border-collapse: collapse;
+}
+
+td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+        padding-left: 10px;
+    padding-right: 10px;
+}
