@@ -7,15 +7,37 @@
  a {
      cursor: pointer;
      word-wrap: break-word;
-     text-decoration: none;
-     color: #b3b3b3;
+     text-decoration: underline;
+     color: #777777;
  }
  
  a:hover {
-     text-decoration: underline;
-     color: #f3f3f3;
+     color: #aaaaaa;
  }
  
+.navLink {
+     font: 400 18px 'Merienda One', Helvetica, sans-serif;
+     color: #777777;
+     margin-left: 100px;
+     text-decoration: none;
+}
+ 
+ .annotation {
+     font: 400 22px 'Merienda One', Helvetica, sans-serif;
+     text-align: center;
+     margin-top: 20px;
+     margin-bottom: 20px;
+     color: #114488;
+ }
+
+ .signature {
+     font: 400 24px 'Great Vibes', 'Merienda One', Helvetica, sans-serif;
+     text-align: right;
+     margin-right: 150px; 
+     margin-top: -35px; 
+     color: #777777;
+ }
+
  img {
      max-width: 100%;
      display: block;
@@ -25,24 +47,8 @@
  }
  
  h1 {
-     font: 400 64px 'Great Vibes', Helvetica, sans-serif;
+     font: 400 64px 'Great Vibes', 'Merienda One', Helvetica, sans-serif;
      text-align: center;
-     color: #777777;
- }
- 
- .annotation {
-     font: 400 18px 'Merienda One', Helvetica, sans-serif;
-     text-align: center;
-     margin-top: 20px;
-     margin-bottom: 20px;
-     color: #2233aa;
- }
-
- .signature {
-     font: 400 24px 'Great Vibes', Helvetica, sans-serif;
-     text-align: right;
-     margin-right: 150px; 
-     margin-top: -35px; 
      color: #777777;
  }
 
