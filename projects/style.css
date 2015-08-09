@@ -1,4 +1,4 @@
-     body {
+body {
      background: #161616;
      width: 1000px;
      margin: 0 auto;
@@ -69,6 +69,13 @@ iframe {
     margin-left: 100px;
  }
  
+h3 {
+     font: 400 24px 'Merienda One', Helvetica, sans-serif;
+     text-align: left;
+     color: #666666;
+    margin-left: 100px;
+ }
+
  p {
      font: 100 16px/1.2 Helvetica, sans-serif;
      color: #555555;
