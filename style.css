@@ -15,10 +15,13 @@ body {
      color: #aaaaaa;
  }
 
- #abstract p {
-    max-width: 28em;
-    margin: 0 auto;
-    text-align: left;
+ .abstract {
+     font: 100 16px Helvetica, sans-serif;
+     color: #555555;
+     margin-left: 300px;
+     margin-right: 150px;
+     margin-top:-75px;
+     margin-bottom: 50px;
 }
  
 .navLink {
@@ -28,6 +31,10 @@ body {
      text-decoration: none;
 }
  
+.navBlock {
+    margin-top: -30px;
+}
+
  .annotation {
      font: 400 22px 'Merienda One', Helvetica, sans-serif;
      text-align: center;
@@ -73,22 +80,40 @@ iframe {
      text-align: left;
      color: #666666;
     margin-left: 100px;
+    margin-top: 30px;
+    margin-bottom: 10px;
  }
  
 h3 {
-     font: 400 24px 'Merienda One', Helvetica, sans-serif;
+     font: 400 20px 'Merienda One', Helvetica, sans-serif;
      text-align: left;
      color: #666666;
-    margin-left: 100px;
+    margin-left: 150px;
+ }
+
+ h4 {
+     font: 400 14px 'Merienda One', Helvetica, sans-serif;
+     text-align: left;
+     color: #666666;
+    margin-left: 150px;
+    margin-bottom: 0px;
  }
 
  p {
-     font: 100 16px/1.2 Helvetica, sans-serif;
+     font: 100 16px Helvetica, sans-serif;
      color: #555555;
      margin-left: 150px;
      margin-right: 150px;
  }
  
+ ul {
+     font: 100 16px Helvetica, sans-serif;
+     color: #555555;
+     margin-left: 150px;
+     margin-right: 150px;
+     margin-top: 0px;
+ }
+
  table {
     border-collapse: collapse;
 }
