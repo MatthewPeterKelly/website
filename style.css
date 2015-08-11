@@ -23,7 +23,11 @@ body {
      margin-top:-75px;
      margin-bottom: 50px;
 }
- 
+.abstract p{
+  margin-left: 0px; 
+  margin-right: 0px; 
+}
+
 .navLink {
      font: 400 18px 'Merienda One', Helvetica, sans-serif;
      color: #777777;
@@ -52,6 +56,13 @@ body {
  }
 
  img {
+     max-width: 100%;
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+ }
+
+ .figure {
      max-width: 100%;
      display: block;
      margin-left: auto;

@@ -3,7 +3,10 @@
 
 <head>
 <title>Quadrature</title>
-<link rel="stylesheet" type="text/css" href="../style.css" />
+<link rel="stylesheet" type="text/css" href="../../style.css" />
+<link rel="stylesheet" type="text/css" href="../../styleLight.css" />
+<!--<link href="http://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" type="text/css">-->
+<link href="http://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet" type="text/css">
 <script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
 <script src="quadrature.js"></script>
 
@@ -22,20 +25,24 @@
 
 <body>
 
-	<h1>Numerical Integration Methods:</h1>
+	<h1>Numerical Quadrature:</h1>
+	<div class="navBlock">
+		<a href="../../index.html" class="navLink">  &#8592; Home </a>
+		<br>
+		<a href="../index.html" class="navLink"> &#8592; Tutorials </a>
+		<br>
+	</div>
+	<div class="signature"> - Matthew Kelly</div>
 	<br>
 	<br>
-	<br>
-	<br>
-	<h1 style="color: #cc1155;">Under Construction! More coming soon.</h1>
-	<br>
-	<br>
+	<div class="annotation">Under Construction! More coming soon.</div>
 	<br>
 	<br>
 
-	<h1>Rectangle-rule:</h1>
+	<h2>Rectangle-rule:</h2>
+	<div id="RectangleRule" class="figure"></div>
 	<script>
-		var svg1 = d3.select("body").append("svg").attr("width",
+		var svg1 = d3.select("#RectangleRule").append("svg").attr("width",
 				width + margin.left + margin.right).attr("height",
 				height + margin.top + margin.bottom).append("g").attr(
 				"transform",
@@ -57,4 +64,5 @@
 		svg1.append("path").attr("d", lineLeftHold(quadData)).attr("fill",
 				"blue").attr("opacity", 0.25);
 	</script>
+	<br><br><br><br><br>
 </body>
