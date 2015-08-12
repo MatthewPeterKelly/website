@@ -1,11 +1,11 @@
 /* This file overrides the default colors to provide a light theme */
 
 body {
-      background: #161616;
+      background: #222222;
  }
  
 a {
-    color: #777777;
+    color: #999999;
 }
 
   a:hover {
