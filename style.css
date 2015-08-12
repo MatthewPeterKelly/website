@@ -1,5 +1,4 @@
 body {
-     background: #161616;
      width: 1000px;
      margin: 0 auto;
  }
@@ -8,16 +7,10 @@ body {
      cursor: pointer;
      word-wrap: break-word;
      text-decoration: underline;
-     color: #777777;
  }
  
- a:hover {
-     color: #aaaaaa;
- }
-
  .abstract {
      font: 100 16px Helvetica, sans-serif;
-     color: #555555;
      margin-left: 300px;
      margin-right: 150px;
      margin-top:-75px;
@@ -30,7 +23,6 @@ body {
 
 .navLink {
      font: 400 18px 'Merienda One', Helvetica, sans-serif;
-     color: #777777;
      margin-left: 100px;
      text-decoration: none;
 }
@@ -44,7 +36,6 @@ body {
      text-align: center;
      margin-top: 20px;
      margin-bottom: 20px;
-     color: #114488;
  }
 
  .signature {
@@ -52,7 +43,6 @@ body {
      text-align: right;
      margin-right: 150px; 
      margin-top: -35px; 
-     color: #777777;
  }
 
  img {
@@ -83,13 +73,11 @@ iframe {
  h1 {
      font: 400 64px 'Great Vibes', 'Merienda One', Helvetica, sans-serif;
      text-align: center;
-     color: #777777;
  }
 
  h2 {
      font: 400 32px 'Merienda One', Helvetica, sans-serif;
      text-align: left;
-     color: #666666;
     margin-left: 100px;
     margin-top: 30px;
     margin-bottom: 10px;
@@ -98,28 +86,24 @@ iframe {
 h3 {
      font: 400 20px 'Merienda One', Helvetica, sans-serif;
      text-align: left;
-     color: #666666;
     margin-left: 150px;
  }
 
  h4 {
      font: 400 14px 'Merienda One', Helvetica, sans-serif;
      text-align: left;
-     color: #666666;
     margin-left: 150px;
     margin-bottom: 0px;
  }
 
  p {
-     font: 100 16px Helvetica, sans-serif;
-     color: #555555;
+     font: 18px Helvetica, sans-serif;
      margin-left: 150px;
      margin-right: 150px;
  }
  
  ul {
      font: 100 16px Helvetica, sans-serif;
-     color: #555555;
      margin-left: 150px;
      margin-right: 150px;
      margin-top: 0px;
