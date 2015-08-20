@@ -38,9 +38,16 @@
         <br>
     </div>
     <div class="abstract">
-        My research focus is on methods for controlling complicated dynamical systems, particularly walking robots. Along the way, I've enjoyed learning to write code for simulation, optimization, and control. This page has some of my formal results, including some past work.
+        I'm a PhD student at Cornell University, studying robotics with Professor <a href="http://ruina.tam.cornell.edu/" target="blank">Andy Ruina</a>. My research interests are focused on understanding how to control complicated dynamical systems, particularly walking robots. This page has most of my formal results, as well as some previous work in mechanical design.
     </div>
+
     <div class="signature"> - Matthew Kelly</div>
+    
+    <h2> Robust control for Cornell Ranger</h2>
+    <p>
+        My ongoing research (summer 2015) is working on developing more robust walking controller for the <a href="http://ruina.tam.cornell.edu/research/topics/locomotion_and_robotics/ranger/Ranger2011/" target="blank">Cornell Ranger</a>. The controller is not <i>robust</i> in the formal sense, but rather in that it is designed to reject all disturbances smaller than some specified size. 
+    </p>
+
     <h2>Non-linear robust control for inverted-pendulum 2D walking</h2>
     <p>
         Conference paper for ICRA 2015. The key contribution is a way of posing and solving the following constrained optimization problem: "Find a controller that can regulate walking speed while preventing all falls, given any (bounded) disturbance."
@@ -72,19 +79,20 @@
     <h2>Q Exam (qualifying exam)</h2>
     <p>For my qualifying exam (January 2012) I presented a simulation of a tractor trailer truck driving backwards along a curving road. It had partial sensing of its state using noisy sensors, and control of the steering angle and travel speed (both of which were bounded). State estimation was done using an extended Kalman filter (EKF). Control was done by using a discrete linear quadratic regulator (dLQR), on the linearized system (about the current state estimate).
     </p>
-    <p>
-        <a href="Q_Exam_Presentation.pdf"> Presentation</a>
-    </p>
-    <p>
+    <ul>
+        <li><a href="Q_Exam_Presentation.pdf"> Presentation</a>
+    </li>
+        <li>
         <a href="https://github.com/MatthewPeterKelly/dscTutorials/tree/master/tractorTrailer">Matlab
 				Code</a>
-    </p>
-    <p>
+    </li>
+        <li>
         <a href="http://www.youtube.com/watch?v=KV8_1eeShVg"> Animation 1
 			</a>, <a href="http://www.youtube.com/watch?v=rdBmSTarx3U"> Animation
 				2 </a>, <a href="http://www.youtube.com/watch?v=9rnEmSdOHpk">
 				Animation 3 </a>
-    </p>
+    </li>
+    </ul>
     <h2>Dynamic Walking Conference</h2>
     <ul>
         <li><a href="DWC_2014-Matthew Kelly - Poster - simulation_and_optimization.pdf">
@@ -95,8 +103,10 @@
 					2012 Poster</a> - <em>Feasibility of Achieving Standing Bipedal
 					Balance with Small Feet</em></li>
     </ul>
-    <h2>Undergraduate Thesis - Bone Saw</h2>
-    <p>My undergraduate thesis project at Tufts University was designing, fabricating, and testing a new type of surgical bone saw. At the conclusion of the project I submitted provisional patent for my saw design and published the experimental results in the ASME Journal of Medical Devices. I was also worked on two conference papers - one for my saw, and one for a saw designed by another student.
+    <h2 id="Research_BoneSaw">Undergraduate Thesis - Bone Saw</h2>
+    <p>My undergraduate thesis project at Tufts University was designing, fabricating, and testing a new type of surgical bone saw. At the conclusion of the project I submitted provisional patent for my saw design and published the experimental results in the ASME Journal of Medical Devices. I was also worked on two conference papers - one for my saw, and one for a saw designed by another student. </p>
+
+      <p>  Research advisor: <a href="http://engineering.tufts.edu/me/people/james/" target="blank">Tom James</a>
     </p>
     <h3>Sagittal Saw:</h3>
     <ul>
@@ -116,15 +126,16 @@
         <li><a href="ASME IMECE 2011-62457 -  Reciprocating Bone Saw - Effect of Blade Speed on Cutting Rate.pdf">
 					Conference Paper</a> - Recriprocating Bone Saw: Effect of Blade Speed on Cutting Rate</li>
     </ul>
-    <h2>Non-linear control design for extensional rheometer </h2>
+    <h2 id="Research_RheometerControl">Non-linear control design for extensional rheometer </h2>
     <p>
         In my last year of undergrad, I worked as a research assistant in the <a href="http://web.mit.edu/nnf/">Non-Newtonian Fluids lab at MIT</a>, along with <a href="https://www.linkedin.com/pub/timothy-lannin/93/902/985"> Tim Lannin </a> and <a href="https://www.linkedin.com/pub/will-langford/16/880/164"> Will Langford</a>. Our goal was to design and implement a non-linear tracking controller on their Filament Stretching Extensional Rheometer (<a href="http://web.mit.edu/nnf/presentation/sld004.htm">FiSER</a>) and to redesign the LabVIEW program that ran the experiments.
     </p>
     <p>
         FiSER characterizes fluids by rapidly stretching them, and measuring both the axial force on the fluid and the diameter of the sample in real time. The original experiments were done by using open-loop velocity profiles for the two measurement stages of the device. We implemented a controller that adjusted the speed of the stages in real-time to track a desired diameter profile in the specimen. This was challenging because the reference trajectories were all exponential, requiring the use of non-linear control techniques. The data acquisition, control, and estimation code were written in LabVIEW and compiled to a National Instruments cRIO and FPGA.
     </p>
+    <p>Research advisors: <a href="http://www.tufts.edu/~crogers/" target="blank">Chris Rogers</a> and <a href="http://web.mit.edu/nnf/", target="blank">Gareth McKinley</a>.</p>
     <h2>Journal of Chem. Education Paper</h2>
-    <p>As an undergraduate at Tufts University, I took a chemistry course, which was designed to teach chemistry by attempting to answer the question: "Is hydrogen the fuel of the future?". My final report for the class was included in supplement of the paper that my professor wrote about the course.
+    <p>As an freshman at Tufts University, I took a chemistry course, which was designed to teach chemistry by attempting to answer the question: "Is hydrogen the fuel of the future?". My final report for the class was included in supplement of the paper that my professor wrote about the course.
     </p>
     <h4> A theme-based course: hydrogen as the fuel of the
 				future</h4>
