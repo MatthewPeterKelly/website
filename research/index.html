@@ -41,14 +41,15 @@
         
         <h2> Robust control for Cornell Ranger</h2>
         <p>
-            My ongoing research (summer 2015) is working on developing more robust walking controller for the <a href="http://ruina.tam.cornell.edu/research/topics/locomotion_and_robotics/ranger/Ranger2011/" target="blank">Cornell Ranger</a>. The controller is not <i>robust</i> in the formal sense, but rather in that it is designed to reject all disturbances smaller than some specified size.
+            My ongoing research (september 2015) is working on developing more robust walking controller for the <a href="http://ruina.tam.cornell.edu/research/topics/locomotion_and_robotics/ranger/Ranger2011/" target="blank">Cornell Ranger</a>. The key motivation behing my controller design is that the controller should be robust to errors in modelling (eg. design in simulation, directly implement on robot) as well as to external perturbations (eg. not stumble and fall when the robot encounters a hill). One of the ways that I do this is to include disturbances in the design process.
         </p>
-        <p>The plan is to implement a heirarchical controller on Ranger. There would be a simple controller that achieves some walking gait, and then a high-level controller that adjusts the parameters in the simple controller to deal with large disturbances and make transitions between gaits. Progress so far: </p>
+        <p> As of now, I have a working simulation that is a pretty good model for the robot, as well as a controller design process that uses some basic machine learning and optimization. I coded up the controller on the Cornell Ranger, and I can take the optimal parameters directly from simulation and get them to work on the real robot. At this point I'm working on more sophisticated controller design as well as a better characterization of the differences between the real robot and the simulation. </p>
         <ul>
             <li> Wrote high-fidelity time-stepping simulator for Ranger.  </li>
-            <li> Got simple controller <a href="https://www.youtube.com/watch?v=Jpgp6qWhvT0" target="blank"> working in simulation</a>, including optimization to find gains. </li>
+            <li> Developed a simple control architecture <a href="https://www.youtube.com/watch?v=Jpgp6qWhvT0" target="blank"> working in simulation</a>, including optimization to find gains. </li>
+             <li> A more sophisticated high-level controller, that updates gait parameters to <a href="https://youtu.be/omhk9OMTVVM" target="blank"> handle disturbances</a>, based on reinforcement learning. </li>
             <li> Completely rewrote the high-level control architecture on Ranger. </li>
-            <li> Ranger now <a href="https://youtu.be/BL334UZvKSE" target="blank"> walks with my simple controller.</a> </li>
+            <li> Ranger now <a href="https://youtu.be/BL334UZvKSE" target="blank"> walks with my simple controller,</a> as well as with the more sophisticared <a href="https://youtu.be/SRY8x-oR470" target="blank"> controller based on reinforcement learning.</a></li>
         </ul>
         <h2>Non-linear robust control for inverted-pendulum 2D walking</h2>
         <p>
