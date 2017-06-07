@@ -34,12 +34,57 @@
 	</div>
 	<div class="signature"> - Matthew Kelly</div>
 	<br>
-	<br>
+	<!-- <br>
 	<div class="annotation">Under Construction! More coming soon.</div>
-	<br>
+	<br> -->
 	<br>
 
-	<h2>Rectangle-rule:</h2>
+
+  <h2>Quadrature Algorithms in Python:</h2>
+	<div id="ExampleCode" class="figure">
+
+    <a class="navLink" href="https://github.com/MatthewPeterKelly/numerical-methods-in-python/tree/master/numerical_methods">
+    	&#8592; Midpoint Rule and Trapezoid Rule
+    </a>
+    <p>
+    	I'm working on making a python library that shows how to code up some common quadrature methods.
+      So far I've only made coded-up two methods, but hope to do more.
+    </p>
+
+  </div>
+
+
+  <br>
+	<br>
+
+
+  <h2>Quadrature Algorithms in Matlab:</h2>
+  <div id="ExampleCode" class="figure">
+
+    <a class="navLink" href="https://www.mathworks.com/matlabcentral/fileexchange/54457-simpsonquadrature">
+      &#8592; Simpson Quadrature
+    </a>
+    <p>
+      Simpson Quadrature is a commonly used method for numerically computing integrals.
+      It is a good trade-off between simplicity and accuracy.
+      Simpson Quadrature works by approximating the integrand as a sequence of quadratic segments.
+    </p>
+
+    <a class="navLink" href="https://www.mathworks.com/matlabcentral/fileexchange/55703-rombergquadrature">
+      &#8592; Rhomberg Quadrature
+    </a>
+    <p>
+      Rhomberg Quadrature is one of the most accurate quadrature methods available, and is complicated to implement.
+      It is used in applications where the integral must be known to a specified precision.
+      Rhomberg Quadrature works by computing a sequence of approximations using the trapezoid method.
+      Each approximation uses a a smaller grid spacing.
+      Richardson extrapolation is then used to predict the limit as the grid spacing goes to zero.
+    </p>
+
+  </div>
+
+
+	<!-- <h2>Rectangle-rule:</h2>
 	<div id="RectangleRule" class="figure"></div>
 	<script>
 		var svg1 = d3.select("#RectangleRule").append("svg").attr("width",
@@ -63,6 +108,6 @@
 				"blue").attr("stroke-width", 4).attr("fill", "none");
 		svg1.append("path").attr("d", lineLeftHold(quadData)).attr("fill",
 				"blue").attr("opacity", 0.25);
-	</script>
+	</script> -->
 	<br><br><br><br><br>
 </body>
